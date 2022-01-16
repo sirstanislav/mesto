@@ -1,0 +1,6 @@
+.card__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 20px 0 21px;
+}

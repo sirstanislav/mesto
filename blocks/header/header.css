@@ -1,0 +1,18 @@
+.header {
+  width: calc(100% - calc(100% * (400 / 1280)));
+  min-width: 320px;
+  height: 74px;
+
+  border-bottom: 1px solid #545454; 
+
+  padding-top: 45px;
+  background-clip: content-box;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    height: 56px;
+    padding-top: 28px;
+  }
+}
