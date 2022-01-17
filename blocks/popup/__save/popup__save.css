@@ -10,6 +10,7 @@
   line-height: 22px;
 
   background-color: #000000;
+  border: 2px solid transparent;
   color: #ffffff;
   cursor: pointer;
 
@@ -21,13 +22,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .popup__save {
-    width: calc(150% * (358 / 768));
-    height: 46px;
-  }
-}
-
-@media screen and (max-width: 320px) {
   .popup__save {
     width: 238px;
     height: 46px;
