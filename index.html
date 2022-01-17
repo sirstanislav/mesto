@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="./pages/index.css">
-	<title>Mesto</title>
+	<title>Место</title>
 </head>
 <body class="page">
 
@@ -18,10 +18,10 @@
 			<div class="profile__avatar"></div>
 			<div class="profile__info">
 				<h1 class="profile__name">Бенджамин Рич</h1>
-				<div class="profile__edit-button"></div>
-				<p class="profile__about">Исследователь постсоветскиx государств государств</p>
+				<button class="profile__edit-button" type="menu"></button>
+				<p class="profile__about">Исследователь постсоветскиx государств</p>
 			</div>
-			<div class="profile__add-button"></div>
+			<button class="profile__add-button" type="button"></button>
 		</section>
 
 		<section class="cards">
@@ -79,7 +79,18 @@
 	</main>
 
 	<footer class="footer">
-
+		<p class="footer__author">© 2022 Станислав Сорочан</p>
 	</footer>
+
+	<div class="popup">
+		<div class="popup__container">
+			<p class="popup__title">Редактировать профиль</p>
+			<p class="popup__name">Бенджамин Рич</p>
+			<p class="popup__about">Исследователь постсоветскиx государств</p>
+			<button class="popup__save">Сохранить</button>
+			<button class="popup__close"></button>
+		</div>
+		
+	</div>
 
 </body>

@@ -3,3 +3,18 @@
   height: 19px;
   background-image: url(../../../images/card__like.svg);
 }
+
+.card__navigation-like:hover {
+  opacity: .5;
+  transition: opacity .3s linear;
+  -webkit-transition: opacity .3s linear;
+  -moz-transition: opacity .3s linear;
+  -ms-transition: opacity .3s linear;
+  -o-transition: opacity .3s linear;
+  cursor: pointer;
+}
+
+.card__navigation-like:active {
+  background-image: url(../../../images/card__like_dark.svg);
+  opacity: 1;
+}

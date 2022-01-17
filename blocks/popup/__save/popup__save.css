@@ -1,0 +1,38 @@
+.popup__save {
+  width: 358px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 18px;
+  line-height: 22px;
+
+  background-color: #000000;
+  color: #ffffff;
+  cursor: pointer;
+
+  margin: 48px 0 0 0;
+}
+
+.popup__save:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__save {
+    width: calc(150% * (358 / 768));
+    height: 46px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__save {
+    width: 238px;
+    height: 46px;
+
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

@@ -1,6 +1,6 @@
 .header {
   width: calc(100% - calc(100% * (400 / 1280)));
-  min-width: 320px;
+  min-width: 282px;
   height: 74px;
 
   border-bottom: 1px solid #545454; 
@@ -10,8 +10,9 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
   .header {
+    min-width: 320px;
     height: 56px;
     padding-top: 28px;
   }
