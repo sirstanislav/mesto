@@ -82,15 +82,18 @@
 		<p class="footer__author">© 2022 Станислав Сорочан</p>
 	</footer>
 
-	<div class="popup">
+	<form class="popup">
+
 		<div class="popup__container">
-			<p class="popup__title">Редактировать профиль</p>
-			<p class="popup__name">Бенджамин Рич</p>
-			<p class="popup__about">Исследователь постсоветскиx государств</p>
-			<button class="popup__save">Сохранить</button>
-			<button class="popup__close"></button>
+			<label class="popup__title">Редактировать профиль</label>
+			<input class="popup__name" type="text" placeholder="Имя" required>
+			<input class="popup__about" type="text" placeholder="О себе" required>
+			<button class="popup__save" type="submit">Сохранить</button>
+			<button class="popup__close" type="reset"></button>
 		</div>
 		
-	</div>
+	</form>
+
+<script src="./script/index.js"></script>
 
 </body>
