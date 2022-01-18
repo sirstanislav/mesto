@@ -2,6 +2,7 @@
   min-width: 22px;
   height: 19px;
   background-image: url(../../../images/card__like.svg);
+  margin: 0;
 }
 
 .card__navigation-like:hover {

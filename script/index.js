@@ -22,11 +22,11 @@ function closePopup(close) {
 popupCloseButton.addEventListener('click', closePopup)
 
 
-popup.addEventListener('click', function (event) {
-  if (event.target === event.currentTarget) {
-    closePopup ()
-  }
-})
+// popup.addEventListener('click', function (event) {
+//   if (event.target === event.currentTarget) {
+//     closePopup ()
+//   }
+// })
 
 
 function savePopup (evt) {
