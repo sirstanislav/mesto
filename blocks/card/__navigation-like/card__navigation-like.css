@@ -1,6 +1,6 @@
 .card__navigation-like {
   min-width: 22px;
-  height: 19px;
+  min-height: 19px;
   background-image: url(../../../images/card__like.svg);
   margin: 0;
 }
