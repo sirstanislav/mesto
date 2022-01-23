@@ -18,61 +18,61 @@
 			<div class="profile__avatar"></div>
 			<div class="profile__info">
 				<h1 class="profile__name">Бенджамин Рич</h1>
-				<button class="profile__edit-button" type="button"></button>
+				<button class="profile__edit-button" type="button" aria-label="Редактирования профиля"></button>
 				<p class="profile__about">Исследователь постсоветскиx государств</p>
 			</div>
-			<button class="profile__add-button" type="button"></button>
+			<button class="profile__add-button" type="button" aria-label="Добавить"></button>
 		</section>
 
-		<section class="cards">
+		<section class="cards" aria-label="Карточки">
 
-			<div class="card">
+			<article class="card">
 				<img class="card__image" src="./images/card__rostov.jpg" alt="Ростов-на-Дону">
 				<div class="card__navigation">
 					<h2 class="card__navigation-title">Ростов-на-Дону</h2>
-					<div class="card__navigation-like"></div>
+					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
-			</div>
+			</article>
 
-			<div class="card">
+			<article class="card">
 				<img class="card__image" src="./images/card__krasnodar.jpg" alt="Краснодар">
 				<div class="card__navigation">
 					<h2 class="card__navigation-title">Краснодар</h2>
-					<div class="card__navigation-like"></div>
+					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
-			</div>
+			</article>
 
-			<div class="card">
+			<article class="card">
 				<img class="card__image" src="./images/card__kurchatov.jpg" alt="Курчатов">
 				<div class="card__navigation">
 					<h2 class="card__navigation-title">Курчатов</h2>
-					<div class="card__navigation-like"></div>
+					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
-			</div>
+			</article>
 
-			<div class="card">
+			<article class="card">
 				<img class="card__image" src="./images/card__kgu.jpg" alt="Кубанский Государственный Университет">
 				<div class="card__navigation">
 					<h2 class="card__navigation-title">Кубанский Государственный Университет</h2>
-					<div class="card__navigation-like"></div>
+					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
-			</div>
+			</article>
 
-			<div class="card">
+			<article class="card">
 				<img class="card__image" src="./images/card__kursk.jpg" alt="Курск">
 				<div class="card__navigation">
 					<h2 class="card__navigation-title">Курск</h2>
-					<div class="card__navigation-like"></div>
+					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
-			</div>
+			</article>
 
-			<div class="card">
+			<article class="card">
 				<img class="card__image" src="./images/card__sp.jpg" alt="Санкт-Петербург">	
 				<div class="card__navigation">
 					<h2 class="card__navigation-title">Санкт-Петербург</h2>
-					<div class="card__navigation-like"></div>
+					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
-			</div>
+			</article>
 
 		</section>
 
@@ -82,19 +82,19 @@
 		<p class="footer__author">© 2022 Станислав Сорочан</p>
 	</footer>
 
-	<form class="popup">
+	<div class="popup">
 
-		<div class="popup__container">
-			<label class="popup__title">Редактировать профиль</label>
-			<input class="popup__name" type="text" placeholder="Имя" required>
-			<input class="popup__about" type="text" placeholder="О себе" required>
+		<form class="popup__container">
+			<h2 class="popup__title">Редактировать профиль</h2>
+			<input class="popup__input popup__input_place_name" name="Name" type="text" placeholder="Имя" required>
+			<input class="popup__input popup__input_place_about" name="About" type="text" placeholder="О себе" required>
 			<button class="popup__save" type="submit">Сохранить</button>
-			<button class="popup__close" type="reset"></button>
-		</div>
+			<button class="popup__close" type="reset" aria-label="Закрыть"></button>
+		</form>
 		
-	</form>
-
-<script src="./script/index.js"></script>
-
+	</div>
+	
+	<script src="./script/index.js"></script>
+	
 </body>
 </html>

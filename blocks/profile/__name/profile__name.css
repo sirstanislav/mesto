@@ -1,5 +1,6 @@
 .profile__name {
   max-width: 294px;
+
   font-size: 42px;
   line-height: 48px;
   font-weight: 500;
@@ -15,14 +16,18 @@
 
 @media screen and (max-width: 768px) {
   .profile__name {
+    grid-column: 1/3;
+    grid-row: 1/1;
+    justify-self: center;
+
     max-width: 189px;
     font-size: 27px;
     line-height: 33px;
-  }
-} 
-
-@media screen and (max-width: 320px) {
-  .profile__name {
     text-align: center;
   }
 } 
+
+/* @media screen and (max-width: 320px) {
+  .profile__name {
+  }
+}  */

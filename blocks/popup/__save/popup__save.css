@@ -14,11 +14,16 @@
   color: #ffffff;
   cursor: pointer;
 
-  margin: 48px 0 0 0;
+  margin: 48px 0 37px 0;
 }
 
 .popup__save:hover {
   opacity: .8;
+  transition: opacity .3s linear;
+  -webkit-transition: opacity .3s linear;
+  -moz-transition: opacity .3s linear;
+  -ms-transition: opacity .3s linear;
+  -o-transition: opacity .3s linear;
 }
 
 @media screen and (max-width: 768px) {
@@ -28,5 +33,7 @@
 
     font-size: 14px;
     line-height: 17px;
+
+    margin: 45px 0 25px 0;
   }
 }

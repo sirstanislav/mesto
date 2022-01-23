@@ -6,14 +6,8 @@
   left: 0;
 
   display: none;
+  justify-content: center;
+  align-items: center;
 
   background-color: rgba(0, 0, 0, 0.5);
-
-  padding-top: 195px;
-}
-
-@media screen and (max-width: 768px) {
-  .popup {
-    padding-top: 123px;
-  }
 }

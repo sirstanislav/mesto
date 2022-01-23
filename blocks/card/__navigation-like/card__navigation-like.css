@@ -1,7 +1,11 @@
 .card__navigation-like {
   min-width: 22px;
   min-height: 19px;
+
   background-image: url(../../../images/card__like.svg);
+  background-color: transparent;
+  border: 0;
+  
   margin: 0;
 }
 
