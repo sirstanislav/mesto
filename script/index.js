@@ -36,6 +36,7 @@ const popupForm = document.querySelector('.popup__form')
 const popupCloseButton = document.querySelectorAll('.popup__close')
 const popupName = document.querySelector('.popup__input_place_name')
 const popupAbout = document.querySelector('.popup__input_place_about')
+const popupLink = document.querySelector('.popup__input_place_link')
 
 const cards = document.querySelector('.cards')
 const template = document.querySelector('.card__template').content;
@@ -43,15 +44,13 @@ const template = document.querySelector('.card__template').content;
 function render() {
   initialCards.forEach(renderItem);
 }
-
 render()
 
-function renderItem (item) {
+function renderItem(initialCards) {
   const newItem = template.querySelector('.card').cloneNode(true);
-  newItem.querySelector('.card__image').src = item.link;
-  newItem.querySelector('.card__image').alt = item.name;
-  newItem.querySelector('.card__navigation-title').textContent = item.name;
-
+  newItem.querySelector('.card__image').src = initialCards.link;
+  newItem.querySelector('.card__image').alt = initialCards.name;
+  newItem.querySelector('.card__navigation-title').textContent = initialCards.name;
   cards.append(newItem)
 }
 
@@ -61,15 +60,29 @@ function openPopupEdit() {
   popupAbout.value = profileAbout.textContent
 }
 
-function openPopupAdd() {
-  popupAddButton.classList.add('popup_enable')
-}
-
-function savePopup (evt) {
-  evt.preventDefault();
+function savePopupEdit(event) {
+  event.preventDefault();
   
   profileName.textContent = popupName.value
   profileAbout.textContent = popupAbout.value
+  closePopup()
+}
+
+function openPopupAdd() {
+  popupAddButton.classList.add('popup_enable')
+  popupAddButton.querySelector('.popup__input_place_name').value = ''
+  popupAddButton.querySelector('.popup__input_place_link').value = ''
+}
+
+function savePopupAdd(event) {
+  event.preventDefault();
+  const popupName = popupAddButton.querySelector('.popup__input_place_name')
+  const popupLink = popupAddButton.querySelector('.popup__input_place_link')
+  const newItem = template.querySelector('.card').cloneNode(true);
+  newItem.querySelector('.card__image').src = popupLink.value
+  newItem.querySelector('.card__image').alt = popupName.value
+  newItem.querySelector('.card__navigation-title').textContent = popupName.value
+  cards.prepend(newItem)
   closePopup()
 }
 
@@ -88,8 +101,8 @@ profileAddButton.addEventListener('click', openPopupAdd)
 // })
 
 popupCloseButton.forEach(element => element.addEventListener('click', closePopup))
-
-popupForm.addEventListener('submit', savePopup)
+popupEditButton.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
+popupAddButton.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
 
 
 

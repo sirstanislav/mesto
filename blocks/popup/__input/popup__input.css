@@ -16,6 +16,13 @@
   border-right: none;
 }
 
+.popup__input[type="url"] {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
 .popup__input:nth-of-type(1) {
   margin: 48px 0 0 0;
 }
