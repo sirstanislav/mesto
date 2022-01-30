@@ -17,62 +17,72 @@
 		<section class="profile">
 			<div class="profile__avatar"></div>
 			<div class="profile__info">
-				<h1 class="profile__name">Бенджамин Рич</h1>
+				<h1 class="profile__name">Станислав Сорочан</h1>
 				<button class="profile__edit-button" type="button" aria-label="Редактирования профиля"></button>
-				<p class="profile__about">Исследователь постсоветскиx государств</p>
+				<p class="profile__about">Студент курса "Веб-разработчик"</p>
 			</div>
 			<button class="profile__add-button" type="button" aria-label="Добавить"></button>
 		</section>
 
 		<section class="cards" aria-label="Карточки">
 
-			<article class="card">
-				<img class="card__image" src="./images/card__rostov.jpg" alt="Ростов-на-Дону">
+			<template class="card__template">
+				<article class="card">
+					<img class="card__image">
+					<div class="card__navigation">
+						<h2 class="card__navigation-title"></h2>
+						<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
+					</div>
+				</article>
+			</template>
+
+			<!-- <article class="card">
+				<img class="card__image" src="./images/card__konakova.jpg" alt="Конакова">
 				<div class="card__navigation">
-					<h2 class="card__navigation-title">Ростов-на-Дону</h2>
+					<h2 class="card__navigation-title">Конакова</h2>
 					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
 			</article>
 
 			<article class="card">
-				<img class="card__image" src="./images/card__krasnodar.jpg" alt="Краснодар">
+				<img class="card__image" src="./images/card__kamchatka.jpg" alt="Камчатка">
 				<div class="card__navigation">
-					<h2 class="card__navigation-title">Краснодар</h2>
+					<h2 class="card__navigation-title">Камчатка</h2>
 					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
 			</article>
 
 			<article class="card">
-				<img class="card__image" src="./images/card__kurchatov.jpg" alt="Курчатов">
+				<img class="card__image" src="./images/card__olkhon.jpg" alt="Ольхо́н">
 				<div class="card__navigation">
-					<h2 class="card__navigation-title">Курчатов</h2>
+					<h2 class="card__navigation-title">Ольхо́н</h2>
 					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
 			</article>
 
 			<article class="card">
-				<img class="card__image" src="./images/card__kgu.jpg" alt="Кубанский Государственный Университет">
+				<img class="card__image" src="./images/card__osetia.jpg" alt="Осетия">
 				<div class="card__navigation">
-					<h2 class="card__navigation-title">Кубанский Государственный Университет</h2>
+					<h2 class="card__navigation-title">Осетия</h2>
 					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
 			</article>
 
 			<article class="card">
-				<img class="card__image" src="./images/card__kursk.jpg" alt="Курск">
+				<img class="card__image" src="./images/card__vladivostok.jpg" alt="Владивосток">
 				<div class="card__navigation">
-					<h2 class="card__navigation-title">Курск</h2>
+					<h2 class="card__navigation-title">Владивосток</h2>
 					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
 			</article>
 
 			<article class="card">
-				<img class="card__image" src="./images/card__sp.jpg" alt="Санкт-Петербург">	
+				<img class="card__image" src="./images/card__dagestan.jpg" alt="Дагестан">
 				<div class="card__navigation">
-					<h2 class="card__navigation-title">Санкт-Петербург</h2>
+					<h2 class="card__navigation-title">Дагестан</h2>
 					<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
 				</div>
-			</article>
+			</article> -->
 
 		</section>
 
@@ -82,7 +92,7 @@
 		<p class="footer__author">© 2022 Станислав Сорочан</p>
 	</footer>
 
-	<div class="popup">
+	<div class="popup popup_edit">
 
 		<div class="popup__container">
 			<h2 class="popup__title">Редактировать профиль</h2>
@@ -90,6 +100,20 @@
 				<input class="popup__input popup__input_place_name" name="Name" type="text" placeholder="Имя" required>
 				<input class="popup__input popup__input_place_about" name="About" type="text" placeholder="О себе" required>
 				<button class="popup__save" type="submit">Сохранить</button>
+			</form>
+			<button class="popup__close" type="reset" aria-label="Закрыть"></button>
+		</div>
+		
+	</div>
+
+	<div class="popup popup_add">
+
+		<div class="popup__container">
+			<h2 class="popup__title">Новое место</h2>
+			<form class="popup__form" name="Form">
+				<input class="popup__input popup__input_place_name" name="Name" type="text" placeholder="Название" required>
+				<input class="popup__input popup__input_place_about" name="About" type="text" placeholder="Ссылка на картинку" required>
+				<button class="popup__save" type="submit">Создать</button>
 			</form>
 			<button class="popup__close" type="reset" aria-label="Закрыть"></button>
 		</div>
