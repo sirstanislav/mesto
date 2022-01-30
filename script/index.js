@@ -30,7 +30,6 @@ const profileAbout = document.querySelector('.profile__about')
 const profileEditButton = document.querySelector('.profile__edit-button')
 const profileAddButton = document.querySelector('.profile__add-button')
 
-const popupEnable = document.querySelectorAll('.popup')
 const popupEditButton = document.querySelector('.popup_edit')
 const popupAddButton = document.querySelector('.popup_add')
 const popupForm = document.querySelector('.popup__form')
@@ -74,17 +73,44 @@ function savePopup (evt) {
   closePopup()
 }
 
+function closePopup() {
+  popupEditButton.classList.remove('popup_enable')
+  popupAddButton.classList.remove('popup_enable') 
+}
+
 profileEditButton.addEventListener('click', openPopupEdit)
 profileAddButton.addEventListener('click', openPopupAdd)
 
-popupCloseButton.forEach(function(element) {
-  element.addEventListener('click', function() {
-    popupEditButton.classList.remove('popup_enable')
-    popupAddButton.classList.remove('popup_enable') 
-  })
-})
+// popupCloseButton.forEach(function (element) {
+//   element.addEventListener('click', function() {
+//     closePopup()
+//   })
+// })
+
+popupCloseButton.forEach(element => element.addEventListener('click', closePopup))
 
 popupForm.addEventListener('submit', savePopup)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // popup.addEventListener('click', function (event) {
