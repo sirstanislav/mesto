@@ -3,6 +3,7 @@
   min-height: 19px;
 
   background-image: url(../../../images/card__like_dark.svg);
+  background-repeat: no-repeat;
   background-color: transparent;
   border: 0;
   
