@@ -27,13 +27,16 @@ const initialCards = [
 
 const profileName = document.querySelector('.profile__name')
 const profileAbout = document.querySelector('.profile__about')
+
 const profileEditButton = document.querySelector('.profile__edit-button')
 const profileAddButton = document.querySelector('.profile__add-button')
 
-const popupEditButton = document.querySelector('.popup_edit')
-const popupAddButton = document.querySelector('.popup_add')
-const popupForm = document.querySelector('.popup__form')
+const popupEditButton = document.querySelector('.popup_edit-profile')
+const popupAddButton = document.querySelector('.popup_add-image')
+const popupImageOpen = document.querySelector('.popup_open-image')
 const popupCloseButton = document.querySelectorAll('.popup__close')
+
+const popupForm = document.querySelector('.popup__form')
 const popupName = document.querySelector('.popup__input_place_name')
 const popupAbout = document.querySelector('.popup__input_place_about')
 const popupLink = document.querySelector('.popup__input_place_link')
@@ -92,11 +95,6 @@ function closePopup() {
   popupEditButton.classList.remove('popup_enable')
   popupAddButton.classList.remove('popup_enable') 
 }
-  
-function addListeners(element) {
-  element.querySelector('.card__navigation-like').addEventListener('click', cardLike)
-  element.querySelector('.card__delete').addEventListener('click', cardDelete)
-}
 
 function cardLike(event) {
   event.target.classList.toggle('card__navigation-like_dark')
@@ -106,12 +104,28 @@ function cardDelete(event) {
   event.target.closest('.card').remove()
 }
 
+function addListeners(element) {
+  element.querySelector('.card__navigation-like').addEventListener('click', cardLike)
+  element.querySelector('.card__delete').addEventListener('click', cardDelete)
+}
+
 profileEditButton.addEventListener('click', openPopupEdit)
 profileAddButton.addEventListener('click', openPopupAdd)
 
 popupCloseButton.forEach(element => element.addEventListener('click', closePopup))
 popupEditButton.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
 popupAddButton.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
