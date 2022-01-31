@@ -52,6 +52,7 @@ function renderItem(initialCards) {
   newItem.querySelector('.card__image').alt = initialCards.name;
   newItem.querySelector('.card__navigation-title').textContent = initialCards.name;
   cards.append(newItem)
+  addListeners(newItem)
 }
 
 function openPopupEdit() {
@@ -84,21 +85,29 @@ function savePopupAdd(event) {
   newItem.querySelector('.card__navigation-title').textContent = popupName.value
   cards.prepend(newItem)
   closePopup()
+  addListeners(newItem)
 }
 
 function closePopup() {
   popupEditButton.classList.remove('popup_enable')
   popupAddButton.classList.remove('popup_enable') 
 }
+  
+function addListeners(element) {
+  element.querySelector('.card__navigation-like').addEventListener('click', cardLike)
+  element.querySelector('.card__delete').addEventListener('click', cardDelete)
+}
+
+function cardLike(event) {
+  event.target.classList.toggle('card__navigation-like_dark')
+}
+
+function cardDelete(event) {
+  event.target.closest('.card').remove()
+}
 
 profileEditButton.addEventListener('click', openPopupEdit)
 profileAddButton.addEventListener('click', openPopupAdd)
-
-// popupCloseButton.forEach(function (element) {
-//   element.addEventListener('click', function() {
-//     closePopup()
-//   })
-// })
 
 popupCloseButton.forEach(element => element.addEventListener('click', closePopup))
 popupEditButton.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
@@ -107,23 +116,11 @@ popupAddButton.querySelector('.popup__form').addEventListener('submit', savePopu
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// popupCloseButton.forEach(function (element) {
+//   element.addEventListener('click', function() {
+//     closePopup()
+//   })
+// })
 
 
 // popup.addEventListener('click', function (event) {
