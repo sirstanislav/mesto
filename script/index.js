@@ -33,7 +33,7 @@ const profileAddButton = document.querySelector('.profile__add-button')
 
 const popupEditButton = document.querySelector('.popup_edit-profile')
 const popupAddButton = document.querySelector('.popup_add-image')
-const popupImageOpen = document.querySelector('.popup_open-image')
+const popupImageOpen = document.querySelector('.popup_image-view')
 const popupCloseButton = document.querySelectorAll('.popup__close')
 
 const popupForm = document.querySelector('.popup__form')
@@ -93,7 +93,8 @@ function savePopupAdd(event) {
 
 function closePopup() {
   popupEditButton.classList.remove('popup_enable')
-  popupAddButton.classList.remove('popup_enable') 
+  popupAddButton.classList.remove('popup_enable')
+  popupImageOpen.classList.remove('popup_enable')
 }
 
 function cardLike(event) {
@@ -104,9 +105,17 @@ function cardDelete(event) {
   event.target.closest('.card').remove()
 }
 
+function openImage(event) {
+  popupImageOpen.classList.add('popup_enable')
+  document.querySelector('.popup__image-full').src = event.target.src
+  document.querySelector('.popup__image-full').alt = event.target.alt
+  document.querySelector('.popup__image-title').textContent = event.target.alt
+}
+
 function addListeners(element) {
   element.querySelector('.card__navigation-like').addEventListener('click', cardLike)
   element.querySelector('.card__delete').addEventListener('click', cardDelete)
+  element.querySelector('.card__image').addEventListener('click', openImage)
 }
 
 profileEditButton.addEventListener('click', openPopupEdit)
@@ -115,20 +124,6 @@ profileAddButton.addEventListener('click', openPopupAdd)
 popupCloseButton.forEach(element => element.addEventListener('click', closePopup))
 popupEditButton.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
 popupAddButton.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // popupCloseButton.forEach(function (element) {
 //   element.addEventListener('click', function() {

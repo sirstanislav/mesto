@@ -9,13 +9,3 @@
   
   margin: 0;
 }
-
-.card__navigation-like_dark:hover {
-  opacity: .5;
-  transition: opacity .3s linear;
-  -webkit-transition: opacity .3s linear;
-  -moz-transition: opacity .3s linear;
-  -ms-transition: opacity .3s linear;
-  -o-transition: opacity .3s linear;
-  cursor: pointer;
-}
