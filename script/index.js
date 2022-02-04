@@ -44,18 +44,22 @@ const popupLink = document.querySelector('.popup__input_place_link')
 const cards = document.querySelector('.cards')
 const template = document.querySelector('.card__template').content;
 
-function render() {
-  initialCards.forEach(renderItem);
+function renderinitialCards() {
+  initialCards.forEach(addCard);
 }
-render()
+renderinitialCards()
 
-function renderItem(initialCards) {
-  const newItem = template.querySelector('.card').cloneNode(true);
-  newItem.querySelector('.card__image').src = initialCards.link;
-  newItem.querySelector('.card__image').alt = initialCards.name;
-  newItem.querySelector('.card__navigation-title').textContent = initialCards.name;
-  cards.append(newItem)
-  addListeners(newItem)
+function addCard(data) {
+  cards.append(createCard(data))
+}
+
+function createCard(item) {
+  const createElement = template.querySelector('.card').cloneNode(true);
+  createElement.querySelector('.card__image').src = item.link;
+  createElement.querySelector('.card__image').alt = item.name;
+  createElement.querySelector('.card__navigation-title').textContent = item.name;
+  addListeners(createElement)
+  return createElement
 }
 
 function openPopupEdit() {
@@ -74,8 +78,8 @@ function savePopupEdit(event) {
 
 function openPopupAdd() {
   popupAddButton.classList.add('popup_enable')
-  popupAddButton.querySelector('.popup__input_place_name').value = ''
-  popupAddButton.querySelector('.popup__input_place_link').value = ''
+  popupAddButton.querySelector('.popup__input_place_name').value = 'Name'
+  popupAddButton.querySelector('.popup__input_place_link').value = 'https://images.unsplash.com/photo-1535427284698-c8e68a1eb910?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1768&q=80'
 }
 
 function savePopupAdd(event) {
