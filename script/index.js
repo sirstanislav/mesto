@@ -31,10 +31,9 @@ const profileAbout = document.querySelector('.profile__about')
 const profileEditButton = document.querySelector('.profile__edit-button')
 const profileAddButton = document.querySelector('.profile__add-button')
 
-const popup = document.querySelector('.popup')
-const popupEditButton = document.querySelector('.popup_edit-profile')
-const popupAddButton = document.querySelector('.popup_add-image')
-const popupImageOpen = document.querySelector('.popup_image-view')
+const popupEdit = document.querySelector('.popup_edit-profile')
+const popupAdd = document.querySelector('.popup_add-image')
+const imagePopup = document.querySelector('.popup_image-view')
 const popupCloseButtons = document.querySelectorAll('.popup__close')
 
 const popupProfileName = document.querySelector('.popup__input_profile_name')
@@ -79,21 +78,22 @@ function createCard(item) {
 //Сохраняем редактирования профиля
 function savePopupEdit(event) {
   event.preventDefault();
-  
   profileName.textContent = popupProfileName.value
   profileAbout.textContent = popupProfileAbout.value
-  closePopup(popupEditButton)
+  closePopup(popupEdit)
 }
 
 //Присваиваем изображению значения из input-ов и передаем в функцию создания карточки
 function savePopupAdd(event) {
   event.preventDefault();
-  const popupName = popupAddButton.querySelector('.popup__input_image_name')
-  const popupLink = popupAddButton.querySelector('.popup__input_image_link')
-  event.name = popupName.value
-  event.link = popupLink.value
-  addCardPrepend(event)
-  closePopup(popupAddButton)
+  const cardData = {
+    name: popupImageName.value,
+    link: popupImageLink.value
+  }
+  addCardPrepend(cardData)
+  closePopup(popupAdd);
+  popupImageName.value = ''
+  popupImageLink.value = ''
 }
 
 function openPopup(popup) {
@@ -117,7 +117,7 @@ function openImage(event) {
   popupImageFullView.src = event.target.src
   popupImageFullView.alt = event.target.alt
   popupImageTitle.textContent = event.target.alt
-  openPopup(popupImageOpen)
+  openPopup(imagePopup)
 }
 
 //Обработчики событий для карточки которые передаются в функцию создания карточки
@@ -131,14 +131,12 @@ function addListeners(element) {
 profileEditButton.addEventListener('click', function(){
   popupProfileName.value = profileName.textContent
   popupProfileAbout.value = profileAbout.textContent
-  openPopup(popupEditButton)
+  openPopup(popupEdit)
 })
 
 //Обработчик для кнопки добавления изображения
 profileAddButton.addEventListener('click', function() {
-  popupImageName.value = ''
-  popupImageLink.value = ''
-  openPopup(popupAddButton)
+  openPopup(popupAdd)
 })
 
 //Кнопки закрытия Pop-up
@@ -148,10 +146,10 @@ popupCloseButtons.forEach(button => {
 })
 
 //Обработчик для кнопки сохранения профиля
-popupEditButton.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
+popupEdit.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
 
 //Обработчик для кнопки сохранения изображения
-popupAddButton.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
+popupAdd.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
 
 // popupCloseButton.forEach(function (element) {
 //   element.addEventListener('click', function() {
