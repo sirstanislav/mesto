@@ -48,11 +48,13 @@
 	<section class="popup popup_edit-profile">
 		<div class="popup__container">
 			<h2 class="popup__title">Редактировать профиль</h2>
-			<form class="popup__form" name="Form">
-				<input class="popup__input popup__input_profile_name" name="Name" type="text" placeholder="Имя" required>
-				<input class="popup__input popup__input_profile_about" name="About" type="text" placeholder="О себе" required>
+			<form class="popup__form" name="edit-form" novalidate>
+				<input id="edit-name" class="popup__input popup__input_profile_name" name="edit-name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+				<span class="edit-name-error popup__error"></span>
+				<input id="edit-about" class="popup__input popup__input_profile_about" name="edit-about" type="text" placeholder="О себе" minlength="2" maxlength="200" required> 
+				<span class="edit-about-error popup__error"></span>
 				<button class="popup__save" type="submit">Сохранить</button>
-			</form>
+			</form>	
 			<button class="popup__close" type="reset" aria-label="Закрыть"></button>
 		</div>
 	</section>
@@ -60,9 +62,11 @@
 	<section class="popup popup_add-image">
 		<div class="popup__container">
 			<h2 class="popup__title">Новое место</h2>
-			<form class="popup__form" name="Form">
-				<input class="popup__input popup__input_image_name" name="Name" type="text" placeholder="Название" required>
-				<input class="popup__input popup__input_image_link" name="Link" type="url" placeholder="Ссылка на картинку" required>
+			<form class="popup__form" name="image-form" novalidate>
+				<input id='image-name' class="popup__input popup__input_image_name" name="image-name" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+				<span class="image-name-error popup__error"></span>
+				<input id='image-link' class="popup__input popup__input_image_link" name="image-link" type="url" placeholder="Ссылка на картинку" required>
+				<span class="image-link-error popup__error"></span>
 				<button class="popup__save" type="submit">Создать</button>
 			</form>
 			<button class="popup__close" type="reset" aria-label="Закрыть"></button>
@@ -78,6 +82,7 @@
 	</section>
 	
 	<script src="./script/index.js"></script>	
-	
+	<script src="./script/validate.js"></script>
+
 </body>
 </html>

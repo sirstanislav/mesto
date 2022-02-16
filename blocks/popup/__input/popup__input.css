@@ -7,20 +7,11 @@
   font-weight: 400;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.popup__input[type="text"] {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-top: none;
   border-left: none;
   border-right: none;
-}
 
-.popup__input[type="url"] {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  padding: 0;
 }
 
 .popup__input:nth-of-type(1) {

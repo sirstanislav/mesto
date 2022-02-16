@@ -159,7 +159,7 @@ popupAdd.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
 
 
 // popup.addEventListener('click', function (event) {
-  //   if (event.target === event.currentTarget) {
-    //     closePopup ()
-    //   }
-    // })
+//   if (event.target === event.currentTarget) {
+//     closePopup ()
+//   }
+// })
