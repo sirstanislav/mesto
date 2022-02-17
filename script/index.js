@@ -94,6 +94,12 @@ function savePopupAdd(event) {
   closePopup(popupAdd);
   popupImageName.value = ''
   popupImageLink.value = ''
+
+  //Я бы рад добавить сюда фунцию toggleButtonState которая проверит через hasInvalidInput валидность полей и выключит кнопку. 
+  //Но я не знаю как ее передать сюда. Поэтому я сделал так. Я спрошу у наставника как можно передать.
+  const disabled = popupAdd.querySelector('.popup__save')
+  disabled.setAttribute('disabled', true)
+  disabled.classList.add('popup__save_disabled')
 }
 
 function openPopup(popup) {
@@ -134,7 +140,6 @@ profileEditButton.addEventListener('click', function(){
   popupProfileName.value = profileName.textContent
   popupProfileAbout.value = profileAbout.textContent
   openPopup(popupEdit)
-  console.log(profileEditButton.validity.valid)
 })
 
 //Обработчик для кнопки добавления изображения
@@ -146,7 +151,7 @@ profileAddButton.addEventListener('click', function() {
 popupCloseButtons.forEach(button => {
   const popup = button.closest('.popup')
   button.addEventListener('click', () => closePopup(popup))
-  popup.addEventListener('click', (event) => {
+  popup.addEventListener('mousedown', (event) => {
     if (event.target === event.currentTarget){
       closePopup(popup)
     }
@@ -155,8 +160,8 @@ popupCloseButtons.forEach(button => {
 
 const closeWithEscape = (event) => {
   if (event.key === 'Escape') {
-    const popupList = Array.from(document.querySelectorAll('.popup'))
-    popupList.forEach(closePopup)
+    const openedPopup = document.querySelector('.popup_enable')
+    closePopup(openedPopup)
   }
 }
 
