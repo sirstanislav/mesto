@@ -98,6 +98,7 @@ function savePopupAdd(event) {
 
 function openPopup(popup) {
   popup.classList.add('popup_enable');
+  document.addEventListener('keydown', closeWithEscape);
 }
 
 function closePopup(popup) {
@@ -149,6 +150,13 @@ popupCloseButtons.forEach(button => {
     }
   })
 });
+
+const closeWithEscape = (event) => {
+  if (event.key === 'Escape') {
+    const popupList = Array.from(document.querySelectorAll('.popup'))
+    popupList.forEach(closePopup)
+  }
+}
 
 //Обработчик для кнопки сохранения профиля
 popupEdit.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
