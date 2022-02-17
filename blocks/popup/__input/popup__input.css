@@ -1,4 +1,4 @@
-.popup__input {
+.popup__input { 
   width: 358px;
   min-height: 27px;
 
@@ -26,7 +26,7 @@
 }
 
 .popup__input:nth-of-type(2) {
-  margin: 30px 0 0 0;
+  margin: 0 0 0 0;
 }
 
 @media screen and (max-width: 768px) {

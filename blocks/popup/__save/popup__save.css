@@ -11,7 +11,7 @@
   border-radius: 2px;
   color: #ffffff;
   cursor: pointer;
-  margin: 48px 0 37px 0;
+  margin: 20px 0 37px 0;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
@@ -35,6 +35,6 @@
     font-size: 14px;
     line-height: 17px;
 
-    margin: 45px 0 25px 0;
+    margin: 20px 0 25px 0;
   }
 }

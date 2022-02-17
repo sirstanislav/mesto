@@ -3,6 +3,7 @@
 
   width: calc(150% * (430 / 1280));
   max-width: 430px;
+  height: 330px;
 
 
   display: flex;

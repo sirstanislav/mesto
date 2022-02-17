@@ -143,23 +143,15 @@ profileAddButton.addEventListener('click', function() {
 popupCloseButtons.forEach(button => {
   const popup = button.closest('.popup')
   button.addEventListener('click', () => closePopup(popup))
-})
+  popup.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget){
+      closePopup(popup)
+    }
+  })
+});
 
 //Обработчик для кнопки сохранения профиля
 popupEdit.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
 
 //Обработчик для кнопки сохранения изображения
 popupAdd.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
-
-// popupCloseButton.forEach(function (element) {
-//   element.addEventListener('click', function() {
-//     closePopup()
-//   })
-// })
-
-
-// popup.addEventListener('click', function (event) {
-//   if (event.target === event.currentTarget) {
-//     closePopup ()
-//   }
-// })
