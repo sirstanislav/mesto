@@ -103,6 +103,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_enable');
+  document.removeEventListener('keydown', closeWithEscape);
 }
 
 function likeCard(event) {
@@ -133,6 +134,7 @@ profileEditButton.addEventListener('click', function(){
   popupProfileName.value = profileName.textContent
   popupProfileAbout.value = profileAbout.textContent
   openPopup(popupEdit)
+  console.log(profileEditButton.validity.valid)
 })
 
 //Обработчик для кнопки добавления изображения
