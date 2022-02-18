@@ -16,27 +16,27 @@ const setEventListeners = (formElement, settings) => {
   toggleButtonState(inputList, buttonElement)
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function() {
-      checkInputValidity(formElement, inputElement, settings)
+      checkInputValidity(inputElement, settings)
       toggleButtonState(inputList, buttonElement);
     })
   })
 }
 
-const checkInputValidity = (formElement, inputElement, settings) => {
+const checkInputValidity = (inputElement, settings) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, settings)
+    showInputError(inputElement, inputElement.validationMessage, settings)
   } else {
-    hideInputError(formElement, inputElement, settings)
+    hideInputError(inputElement, settings)
   }
 }
 
-const showInputError = (formElement, inputElement, errorMessage, settings) => {
+const showInputError = (inputElement, errorMessage, settings) => {
   const errorElement = inputElement.nextElementSibling
   inputElement.classList.add(settings.inputErrorClass)
   errorElement.textContent = errorMessage
 }
 
-const hideInputError = (formElement, inputElement, settings) => {
+const hideInputError = (inputElement, settings) => {
   const errorElement = inputElement.nextElementSibling
   inputElement.classList.remove(settings.inputErrorClass)
   errorElement.textContent = ''

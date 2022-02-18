@@ -95,11 +95,16 @@ function savePopupAdd(event) {
   popupImageName.value = ''
   popupImageLink.value = ''
 
-  //Я бы рад добавить сюда фунцию toggleButtonState которая проверит через hasInvalidInput валидность полей и выключит кнопку. 
-  //Но я не знаю как ее передать сюда. Поэтому я сделал так. Я спрошу у наставника как можно передать.
-  const disabled = popupAdd.querySelector('.popup__save')
-  disabled.setAttribute('disabled', true)
-  disabled.classList.add('popup__save_disabled')
+  // const disabled = popupAdd.querySelector('.popup__save')
+  // disabled.setAttribute('disabled', true)
+  // disabled.classList.add('popup__save_disabled')
+  
+  const formList = Array.from(document.querySelectorAll('.popup__form'))
+  formList.forEach((element) => {
+    const inputList = Array.from(element.querySelectorAll('.popup__input'))
+    const buttonElement = element.querySelector('.popup__save')
+    toggleButtonState(inputList, buttonElement)
+  })
 }
 
 function openPopup(popup) {
