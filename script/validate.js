@@ -5,14 +5,14 @@ const enableValidation = (settings) => {
       event.preventDefault();
     })
   })
-  formsList.forEach((form) => {
-    setEventListeners(form, settings)
+  formsList.forEach((formsList) => {
+    setEventListeners(formsList, settings)
   })
 }
 
-const setEventListeners = (formElement, settings) => {
-  const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector))
-  const buttonElement = formElement.querySelector(settings.submitButtonSelector)
+const setEventListeners = (formsList, settings) => {
+  const inputList = Array.from(formsList.querySelectorAll(settings.inputSelector))
+  const buttonElement = formsList.querySelector(settings.submitButtonSelector)
   toggleButtonState(inputList, buttonElement)
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function() {
