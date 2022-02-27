@@ -98,13 +98,6 @@ function savePopupAdd(event) {
   const disabled = popupAdd.querySelector('.popup__save')
   disabled.setAttribute('disabled', true)
   disabled.classList.add('popup__save_disabled')
-  
-  // const formList = Array.from(document.querySelectorAll('.popup__form'))
-  // formList.forEach((element) => {
-  //   const inputList = Array.from(element.querySelectorAll('.popup__input'))
-  //   const buttonElement = element.querySelector('.popup__save')
-  //   toggleButtonState(inputList, buttonElement)
-  // })
 }
 
 function openPopup(popup) {
@@ -144,6 +137,15 @@ function addListeners(element) {
 profileEditButton.addEventListener('click', function(){
   popupProfileName.value = profileName.textContent
   popupProfileAbout.value = profileAbout.textContent
+  const formList = Array.from(document.querySelectorAll('.popup__form'))
+  formList.forEach((element) => {
+    const inputList = Array.from(element.querySelectorAll('.popup__input'))
+    const buttonElement = element.querySelector('.popup__save')
+    inputList.forEach((inputElement) => {
+      checkInputValidity(inputElement, settings)
+      toggleButtonState(inputList, buttonElement);
+    })
+  })
   openPopup(popupEdit)
 })
 

@@ -1,3 +1,12 @@
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__error'
+}
+
 const enableValidation = (settings) => {
   const formsList = Array.from(document.querySelectorAll(settings.formSelector))
   formsList.forEach((formElement) => {
@@ -58,11 +67,4 @@ function toggleButtonState(inputList, buttonElement) {
   }
 }
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__error'
-});
+enableValidation(settings);
