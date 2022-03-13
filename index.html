@@ -48,7 +48,7 @@
 	<section class="popup popup_edit-profile">
 		<div class="popup__container">
 			<h2 class="popup__title">Редактировать профиль</h2>
-			<form class="popup__form" name="edit-form" novalidate>
+			<form class="popup__form" name="editForm" novalidate>
 				<input class="popup__input popup__input_profile_name" name="edit-name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
 				<span class="popup__error"></span>
 				<input class="popup__input popup__input_profile_about" name="edit-about" type="text" placeholder="О себе" minlength="2" maxlength="200" required> 
@@ -62,7 +62,7 @@
 	<section class="popup popup_add-image">
 		<div class="popup__container">
 			<h2 class="popup__title">Новое место</h2>
-			<form class="popup__form" name="image-form" novalidate>
+			<form class="popup__form" name="imageForm" novalidate>
 				<input class="popup__input popup__input_image_name" name="image-name" type="text" placeholder="Название" minlength="2" maxlength="30" required>
 				<span class="popup__error"></span>
 				<input class="popup__input popup__input_image_link" name="image-link" type="url" placeholder="Ссылка на картинку" required>
@@ -81,8 +81,7 @@
 		</div>
 	</section>
 	
-	<script src="./script/validate.js"></script>
-	<script src="./script/index.js"></script>
+	<script type="module" src="./script/index.js"></script>
 
 </body>
 </html>

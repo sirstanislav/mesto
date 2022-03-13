@@ -1,3 +1,14 @@
+import { FormValidator } from "./FormValidator.js";
+
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__error'
+}
+
 const initialCards = [
   {
     name: 'Камчатка',
@@ -31,6 +42,11 @@ const profileAbout = document.querySelector('.profile__about')
 const profileEditButton = document.querySelector('.profile__edit-button')
 const profileAddButton = document.querySelector('.profile__add-button')
 
+const popupForms = {
+  editForm: document.forms.editForm,
+  imageForm: document.forms.imageForm
+}
+
 const popupEdit = document.querySelector('.popup_edit-profile')
 const popupAdd = document.querySelector('.popup_add-image')
 const imagePopup = document.querySelector('.popup_image-view')
@@ -46,6 +62,19 @@ const popupImageTitle = document.querySelector('.popup__image-title')
 
 const cards = document.querySelector('.cards')
 const template = document.querySelector('.card__template').content;
+
+
+
+const editProfileValidator = new FormValidator(settings, popupForms.editForm)
+const addCardleValidator = new FormValidator(settings, popupForms.imageForm)
+
+editProfileValidator.enableValidation()
+addCardleValidator.enableValidation()
+
+
+
+
+
 
 //Инициализируем карточки из массива
 function renderinitialCards() {
@@ -137,15 +166,15 @@ function addListeners(element) {
 profileEditButton.addEventListener('click', function(){
   popupProfileName.value = profileName.textContent
   popupProfileAbout.value = profileAbout.textContent
-  const formList = Array.from(document.querySelectorAll('.popup__form'))
-  formList.forEach((element) => {
-    const inputList = Array.from(element.querySelectorAll('.popup__input'))
-    const buttonElement = element.querySelector('.popup__save')
-    inputList.forEach((inputElement) => {
-      checkInputValidity(inputElement, settings)
-      toggleButtonState(inputList, buttonElement);
-    })
-  })
+  // const formList = Array.from(document.querySelectorAll('.popup__form'))
+  // formList.forEach((element) => {
+  //   const inputsList = Array.from(element.querySelectorAll('.popup__input'))
+  //   const buttonElement = element.querySelector('.popup__save')
+  //   inputsList.forEach((inputElement) => {
+  //     checkInputValidity(inputElement, settings)
+  //     toggleButtonState(inputsList, buttonElement);
+  //   })
+  // })
   openPopup(popupEdit)
 })
 
