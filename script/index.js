@@ -66,6 +66,7 @@ const popupImageName = document.querySelector('.popup__input_image_name')
 const popupImageLink = document.querySelector('.popup__input_image_link')
 
 const cards = document.querySelector('.cards')
+
 const editProfileValidator = new FormValidator(settings, popupForms.editForm)
 const addCardleValidator = new FormValidator(settings, popupForms.imageForm)
 
