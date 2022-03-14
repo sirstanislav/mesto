@@ -16,7 +16,7 @@ const closeWithEscape = (event) => {
  
 function closePopup(popup) {
   popup.classList.remove('popup_enable');
-  document.removeEventListener('keydown', closeWithEscape) ;
+  document.removeEventListener('keydown', closeWithEscape);
 }
 
 export {

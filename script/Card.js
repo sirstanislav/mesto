@@ -13,7 +13,7 @@ export class Card {
   }
 
   //Функция создания карточки и добавления к ним обработчиков событий
-  createCard() {
+  generateCard() {
     this._cardImage = this._createElement.querySelector('.card__image')
     this._cardNavigationTitle = this._createElement.querySelector('.card__navigation-title')
     this._cardImage.src = this._data.link;
@@ -25,7 +25,7 @@ export class Card {
 
   //Обработчики событий для карточки которые передаются в функцию создания карточки
   _addListeners() {
-    this._createElement.querySelector('.card__navigation-like').addEventListener('click', this._likeCard)
+    this._like.addEventListener('click', this._likeCard)
     this._createElement.querySelector('.card__delete').addEventListener('click', this._deleteCard)
     this._cardImage.addEventListener('click', this._openImage)
   }
@@ -36,6 +36,7 @@ export class Card {
 
   _deleteCard = () => {
     this._createElement.remove()
+    this._createElement = null
   }
   
   //Pop-up просмотра изображения в полном размере

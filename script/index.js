@@ -67,11 +67,11 @@ const popupImageLink = document.querySelector('.popup__input_image_link')
 
 const cards = document.querySelector('.cards')
 
-const editProfileValidator = new FormValidator(settings, popupForms.editForm)
-const addCardleValidator = new FormValidator(settings, popupForms.imageForm)
+const profileValidator = new FormValidator(settings, popupForms.editForm)
+const cardleValidator = new FormValidator(settings, popupForms.imageForm)
 
-editProfileValidator.enableValidation()
-addCardleValidator.enableValidation()
+profileValidator.enableValidation()
+cardleValidator.enableValidation()
 
 //Инициализируем карточки из массива
 function renderinitialCards() {
@@ -81,17 +81,16 @@ renderinitialCards()
 
 //Готовые карточки добавляем в конец DOM
 function addCardAppend(data) {
-  const card = new Card(data, '.card__template')
-  const cardElement = card.createCard()
-
-  cards.append(cardElement)
+  cards.append(createCard(data))
 }
 
 //Готовые карточки добавляем в начало DOM
 function addCardPrepend(data) {
-  const card = new Card(data, '.card__template')
-  const cardElement = card.createCard()
-  cards.prepend(cardElement)
+  cards.prepend(createCard(data))
+}
+
+function createCard(data) {
+  return new Card(data, '.card__template').generateCard()
 }
 
 //Сохраняем редактирования профиля
@@ -114,30 +113,33 @@ function savePopupAdd(event) {
   popupImageName.value = ''
   popupImageLink.value = ''
 
-  const disabled = popupAdd.querySelector('.popup__save')
-  disabled.setAttribute('disabled', true)
-  disabled.classList.add('popup__save_disabled')
+  // const disabled = popupAdd.querySelector('.popup__save')
+  // disabled.setAttribute('disabled', true)
+  // disabled.classList.add('popup__save_disabled')
+
+
 }
 
 //Обработчик для кнопки редактирования профиля
 profileEditButton.addEventListener('click', function(){
   popupProfileName.value = profileName.textContent
   popupProfileAbout.value = profileAbout.textContent
-  editProfileValidator.resetErrors()
+  profileValidator.resetValidation()
   openPopup(popupEdit)
 })
 
 //Обработчик для кнопки добавления изображения
 profileAddButton.addEventListener('click', function() {
+  cardleValidator.resetValidation()
   openPopup(popupAdd)
+  
 })
 
 //Кнопки закрытия Pop-up
 popupCloseButtons.forEach(button => {
   const popup = button.closest('.popup')
-  button.addEventListener('click', () => closePopup(popup))
   popup.addEventListener('mousedown', (event) => {
-    if (event.target === event.currentTarget){
+    if (event.target.classList.contains('popup__close') || event.target === event.currentTarget) {
       closePopup(popup)
     }
   })
