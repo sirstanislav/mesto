@@ -1,4 +1,13 @@
-import { FormValidator } from "./FormValidator.js";
+import {
+  FormValidator } from './FormValidator.js'
+
+import {
+  openPopup,
+  closePopup } from './shareFunctions.js'
+
+  import {
+    Card
+  } from './Card.js'
 
 const settings = {
   formSelector: '.popup__form',
@@ -49,7 +58,6 @@ const popupForms = {
 
 const popupEdit = document.querySelector('.popup_edit-profile')
 const popupAdd = document.querySelector('.popup_add-image')
-const imagePopup = document.querySelector('.popup_image-view')
 const popupCloseButtons = document.querySelectorAll('.popup__close')
 
 const popupProfileName = document.querySelector('.popup__input_profile_name')
@@ -57,24 +65,12 @@ const popupProfileAbout = document.querySelector('.popup__input_profile_about')
 const popupImageName = document.querySelector('.popup__input_image_name')
 const popupImageLink = document.querySelector('.popup__input_image_link')
 
-const popupImageFullView = document.querySelector('.popup__image-full')
-const popupImageTitle = document.querySelector('.popup__image-title')
-
 const cards = document.querySelector('.cards')
-const template = document.querySelector('.card__template').content;
-
-
-
 const editProfileValidator = new FormValidator(settings, popupForms.editForm)
 const addCardleValidator = new FormValidator(settings, popupForms.imageForm)
 
 editProfileValidator.enableValidation()
 addCardleValidator.enableValidation()
-
-
-
-
-
 
 //Инициализируем карточки из массива
 function renderinitialCards() {
@@ -84,24 +80,17 @@ renderinitialCards()
 
 //Готовые карточки добавляем в конец DOM
 function addCardAppend(data) {
-  cards.append(createCard(data))
+  const card = new Card(data, '.card__template')
+  const cardElement = card.createCard()
+
+  cards.append(cardElement)
 }
 
 //Готовые карточки добавляем в начало DOM
 function addCardPrepend(data) {
-  cards.prepend(createCard(data))
-}
-
-//Функция создания карточки и добавления к ним обработчиков событий
-function createCard(item) {
-  const createElement = template.querySelector('.card').cloneNode(true);
-  const cardImage = createElement.querySelector('.card__image')
-  const cardNavigationTitle = createElement.querySelector('.card__navigation-title')
-  cardImage.src = item.link;
-  cardImage.alt = item.name;
-  cardNavigationTitle.textContent = item.name;
-  addListeners(createElement)
-  return createElement
+  const card = new Card(data, '.card__template')
+  const cardElement = card.createCard()
+  cards.prepend(cardElement)
 }
 
 //Сохраняем редактирования профиля
@@ -129,52 +118,11 @@ function savePopupAdd(event) {
   disabled.classList.add('popup__save_disabled')
 }
 
-function openPopup(popup) {
-  popup.classList.add('popup_enable');
-  document.addEventListener('keydown', closeWithEscape);
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_enable');
-  document.removeEventListener('keydown', closeWithEscape);
-}
-
-function likeCard(event) {
-  event.target.classList.toggle('card__navigation-like_dark')
-}
-
-function deleteCard(event) {
-  event.target.closest('.card').remove()
-}
-
-//Pop-up просмотра изображения в полном размере
-function openImage(event) {
-  popupImageFullView.src = event.target.src
-  popupImageFullView.alt = event.target.alt
-  popupImageTitle.textContent = event.target.alt
-  openPopup(imagePopup)
-}
-
-//Обработчики событий для карточки которые передаются в функцию создания карточки
-function addListeners(element) {
-  element.querySelector('.card__navigation-like').addEventListener('click', likeCard)
-  element.querySelector('.card__delete').addEventListener('click', deleteCard)
-  element.querySelector('.card__image').addEventListener('click', openImage)
-}
-
 //Обработчик для кнопки редактирования профиля
 profileEditButton.addEventListener('click', function(){
   popupProfileName.value = profileName.textContent
   popupProfileAbout.value = profileAbout.textContent
-  // const formList = Array.from(document.querySelectorAll('.popup__form'))
-  // formList.forEach((element) => {
-  //   const inputsList = Array.from(element.querySelectorAll('.popup__input'))
-  //   const buttonElement = element.querySelector('.popup__save')
-  //   inputsList.forEach((inputElement) => {
-  //     checkInputValidity(inputElement, settings)
-  //     toggleButtonState(inputsList, buttonElement);
-  //   })
-  // })
+  editProfileValidator.resetErrors()
   openPopup(popupEdit)
 })
 
@@ -193,13 +141,6 @@ popupCloseButtons.forEach(button => {
     }
   })
 });
-
-const closeWithEscape = (event) => {
-  if (event.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_enable')
-    closePopup(openedPopup)
-  }
-}
 
 //Обработчик для кнопки сохранения профиля
 popupEdit.querySelector('.popup__form').addEventListener('submit', savePopupEdit)

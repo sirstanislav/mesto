@@ -5,7 +5,6 @@ export class FormValidator {
     this._inputSelector = settings.inputSelector
     this._inputsList = Array.from(this._form.querySelectorAll(this._settings.inputSelector))
     this._buttonElement = this._form.querySelector(this._settings.submitButtonSelector)
-    console.log(this._inputsList)
   }
 
   enableValidation() {
@@ -61,5 +60,11 @@ export class FormValidator {
       this._buttonElement.classList.remove('popup__save_disabled')
       this._buttonElement.removeAttribute('disabled')
     }
+  }
+
+  resetErrors() {
+    this._inputsList.forEach((inputElement) => {
+      this._checkInputValidity(inputElement)
+    })
   }
 }
