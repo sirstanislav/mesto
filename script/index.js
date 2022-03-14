@@ -132,7 +132,6 @@ profileEditButton.addEventListener('click', function(){
 profileAddButton.addEventListener('click', function() {
   cardleValidator.resetValidation()
   openPopup(popupAdd)
-  
 })
 
 //Кнопки закрытия Pop-up
