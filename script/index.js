@@ -5,9 +5,11 @@ import {
   openPopup,
   closePopup } from './shareFunctions.js'
 
-  import {
-    Card
-  } from './Card.js'
+import {
+  Card
+} from './Card.js'
+
+import Section from './Section.js'
 
 const settings = {
   formSelector: '.popup__form',
@@ -73,25 +75,36 @@ const cardleValidator = new FormValidator(settings, popupForms.imageForm)
 profileValidator.enableValidation()
 cardleValidator.enableValidation()
 
+
+const defaultCards = new Section({
+  data: initialCards,
+  renderer: (item) => {
+    return new Card(item, '.card__template').generateCard()
+  }
+ }, '.cards')
+
+ defaultCards.renderItems()
+
+
 //Инициализируем карточки из массива
-function renderinitialCards() {
-  initialCards.forEach(addCardAppend);
-}
-renderinitialCards()
+// function renderinitialCards() {
+//   initialCards.forEach(addCardAppend);
+// }
+// renderinitialCards()
 
-//Готовые карточки добавляем в конец DOM
-function addCardAppend(data) {
-  cards.append(createCard(data))
-}
+// //Готовые карточки добавляем в конец DOM
+// function addCardAppend(data) {
+//   cards.append(createCard(data))
+// }
 
-//Готовые карточки добавляем в начало DOM
-function addCardPrepend(data) {
-  cards.prepend(createCard(data))
-}
+// //Готовые карточки добавляем в начало DOM
+// function addCardPrepend(data) {
+//   cards.prepend(createCard(data))
+// }
 
-function createCard(data) {
-  return new Card(data, '.card__template').generateCard()
-}
+// function createCard(data) {
+//   return new Card(data, '.card__template').generateCard()
+// }
 
 //Сохраняем редактирования профиля
 function savePopupEdit(event) {
@@ -112,12 +125,6 @@ function savePopupAdd(event) {
   closePopup(popupAdd);
   popupImageName.value = ''
   popupImageLink.value = ''
-
-  // const disabled = popupAdd.querySelector('.popup__save')
-  // disabled.setAttribute('disabled', true)
-  // disabled.classList.add('popup__save_disabled')
-
-
 }
 
 //Обработчик для кнопки редактирования профиля
