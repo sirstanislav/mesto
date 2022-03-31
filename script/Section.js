@@ -1,9 +1,8 @@
 export default class Section {
   constructor({data, renderer}, containerSelector) {
-    console.log(data)
     this._items = data
     this._renderer = renderer
-    this._container = document.querySelector(containerSelector)
+    this._container = containerSelector
   }
 
   //Инициализируем карточки из массива

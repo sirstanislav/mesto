@@ -7,16 +7,16 @@ function openPopup(popup) {
   document.addEventListener('keydown', closeWithEscape);
 }
 
+function closePopup(popup) {
+  popup.classList.remove('popup_enable');
+  document.removeEventListener('keydown', closeWithEscape);
+}
+
 const closeWithEscape = (event) => {
   if (event.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_enable')
     closePopup(openedPopup)
   }
-}
- 
-function closePopup(popup) {
-  popup.classList.remove('popup_enable');
-  document.removeEventListener('keydown', closeWithEscape);
 }
 
 export {

@@ -5,11 +5,12 @@ import {
   openPopup 
 } from './shareFunctions.js'
 
-export class Card {
-  constructor(data, cardTemplateSelector) {
+export default class Card {
+  constructor(data, cardTemplateSelector, handleImageClick) {
     this._data = data
     this._createElement = document.querySelector(cardTemplateSelector).content.querySelector('.card').cloneNode(true)
     this._like = this._createElement.querySelector('.card__navigation-like')
+    this._handleImageClick = handleImageClick
   }
 
   //Функция создания карточки и добавления к ним обработчиков событий
@@ -27,7 +28,7 @@ export class Card {
   _addListeners() {
     this._like.addEventListener('click', this._likeCard)
     this._createElement.querySelector('.card__delete').addEventListener('click', this._deleteCard)
-    this._cardImage.addEventListener('click', this._openImage)
+    this._cardImage.addEventListener('click', () => this._handleImageClick())
   }
 
   _likeCard = () => {
@@ -37,13 +38,5 @@ export class Card {
   _deleteCard = () => {
     this._createElement.remove()
     this._createElement = null
-  }
-  
-  //Pop-up просмотра изображения в полном размере
-  _openImage = () => {
-    popupImageFullView.src = this._data.link
-    popupImageFullView.alt = this._data.name
-    popupImageTitle.textContent = this._data.name
-    openPopup(imagePopup)
   }
 }

@@ -1,51 +1,19 @@
-import {
-  FormValidator } from './FormValidator.js'
-
-import {
-  openPopup,
-  closePopup } from './shareFunctions.js'
-
-import {
-  Card
-} from './Card.js'
-
+import FormValidator from './FormValidator.js'
+import Card from './Card.js'
 import Section from './Section.js'
+import Popup from './Popup.js'
+import PopupWithImage from './PopupWithImage.js'
+import PopupWithForm from './PopupWithForm.js'
 
-const settings = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__error'
-}
-
-const initialCards = [
-  {
-    name: 'Камчатка',
-    link: 'https://images.unsplash.com/photo-1535427284698-c8e68a1eb910?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1768&q=80'
-  },
-  {
-    name: 'Конакова',
-    link: 'https://images.unsplash.com/photo-1608132809707-8f82cda0879c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-  },
-  {
-    name: 'Ольхо́н',
-    link: 'https://images.unsplash.com/photo-1614357932292-a38393b966a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  },
-  {
-    name: 'Осетия',
-    link: 'https://images.unsplash.com/photo-1612719734820-81784b7e6573?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-  },
-  {
-    name: 'Владивосток',
-    link: 'https://images.unsplash.com/photo-1637912725667-291b85cf1850?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2789&q=80'
-  },
-  {
-    name: 'Дагестан',
-    link: 'https://images.unsplash.com/photo-1634715107433-d9e3403f5bc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-  }
-];
+import {
+  popupImageName,
+  popupImageLink,
+  initialCards,
+  settings,
+  cards,
+  imagePopup,
+  cardData,
+} from './utils/constant.js'
 
 const profileName = document.querySelector('.profile__name')
 const profileAbout = document.querySelector('.profile__about')
@@ -61,13 +29,8 @@ const popupForms = {
 const popupEdit = document.querySelector('.popup_edit-profile')
 const popupAdd = document.querySelector('.popup_add-image')
 const popupCloseButtons = document.querySelectorAll('.popup__close')
-
 const popupProfileName = document.querySelector('.popup__input_profile_name')
 const popupProfileAbout = document.querySelector('.popup__input_profile_about')
-const popupImageName = document.querySelector('.popup__input_image_name')
-const popupImageLink = document.querySelector('.popup__input_image_link')
-
-const cards = document.querySelector('.cards')
 
 const profileValidator = new FormValidator(settings, popupForms.editForm)
 const cardleValidator = new FormValidator(settings, popupForms.imageForm)
@@ -76,53 +39,41 @@ profileValidator.enableValidation()
 cardleValidator.enableValidation()
 
 
+const popupImageNew = new PopupWithImage('.popup_image-view')
+
 const defaultCards = new Section({
   data: initialCards,
   renderer: (item) => {
-    return new Card(item, '.card__template').generateCard()
+    return new Card(item, '.card__template', () => popupImageNew.open(item)).generateCard()
   }
- }, '.cards')
+ }, cards)
 
  defaultCards.renderItems()
 
 
-//Инициализируем карточки из массива
-// function renderinitialCards() {
-//   initialCards.forEach(addCardAppend);
-// }
-// renderinitialCards()
+const editPopupSubmit = new PopupWithForm('.popup_edit-profile', savePopupEdit)
+const addPopupSubmit = new PopupWithForm('.popup_add-image', savePopupAdd)
+editPopupSubmit.setEventListeners()
+addPopupSubmit.setEventListeners()
+popupImageNew.setEventListeners() //пришлось вызвать popupImageNew.setEventListeners. Без него не заводится.
 
-// //Готовые карточки добавляем в конец DOM
-// function addCardAppend(data) {
-//   cards.append(createCard(data))
-// }
-
-// //Готовые карточки добавляем в начало DOM
-// function addCardPrepend(data) {
-//   cards.prepend(createCard(data))
-// }
-
-// function createCard(data) {
-//   return new Card(data, '.card__template').generateCard()
-// }
 
 //Сохраняем редактирования профиля
-function savePopupEdit(event) {
-  event.preventDefault();
+function savePopupEdit() {
   profileName.textContent = popupProfileName.value
   profileAbout.textContent = popupProfileAbout.value
-  closePopup(popupEdit)
+  new Popup('.popup_edit-profile').close()
 }
-
 //Присваиваем изображению значения из input-ов и передаем в функцию создания карточки
-function savePopupAdd(event) {
-  event.preventDefault();
-  const cardData = {
-    name: popupImageName.value,
-    link: popupImageLink.value
-  }
-  addCardPrepend(cardData)
-  closePopup(popupAdd);
+function savePopupAdd() {
+  new Section({
+    data: cardData,
+    renderer: (item) => {
+      return new Card(item, '.card__template', () => popupImageNew.open(item)).generateCard()
+    }
+   }, cards).renderItems()
+
+  new Popup('.popup_add-image').close()
   popupImageName.value = ''
   popupImageLink.value = ''
 }
@@ -132,27 +83,19 @@ profileEditButton.addEventListener('click', function(){
   popupProfileName.value = profileName.textContent
   popupProfileAbout.value = profileAbout.textContent
   profileValidator.resetValidation()
-  openPopup(popupEdit)
+  new Popup('.popup_edit-profile').open()
 })
 
 //Обработчик для кнопки добавления изображения
 profileAddButton.addEventListener('click', function() {
   cardleValidator.resetValidation()
-  openPopup(popupAdd)
+  new Popup('.popup_add-image').open()
 })
 
-//Кнопки закрытия Pop-up
-popupCloseButtons.forEach(button => {
-  const popup = button.closest('.popup')
-  popup.addEventListener('mousedown', (event) => {
-    if (event.target.classList.contains('popup__close') || event.target === event.currentTarget) {
-      closePopup(popup)
-    }
-  })
-});
-
+// new Popup(popupCloseButtons).setEventListeners()
+ 
 //Обработчик для кнопки сохранения профиля
-popupEdit.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
+// popupEdit.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
 
 //Обработчик для кнопки сохранения изображения
-popupAdd.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
+// popupAdd.querySelector('.popup__form').addEventListener('submit', savePopupAdd)
