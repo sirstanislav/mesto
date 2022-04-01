@@ -8,7 +8,6 @@ export const popupImageLink = document.querySelector('.popup__input_image_link')
 
 export const cards = document.querySelector('.cards')
 
-
 export const settings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

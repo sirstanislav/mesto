@@ -14,30 +14,28 @@ import {
   cards
 } from './utils/constant.js'
 
-const profileName = document.querySelector('.profile__name')
-const profileAbout = document.querySelector('.profile__about')
-
 const profileEditButton = document.querySelector('.profile__edit-button')
 const profileAddButton = document.querySelector('.profile__add-button')
+const popupProfileName = document.querySelector('.popup__input_profile_name')
+const popupProfileAbout = document.querySelector('.popup__input_profile_about')
 
 const popupForms = {
   editForm: document.forms.editForm,
   imageForm: document.forms.imageForm
 }
 
-const popupEdit = document.querySelector('.popup_edit-profile')
-const popupAdd = document.querySelector('.popup_add-image')
-const popupCloseButtons = document.querySelectorAll('.popup__close')
-const popupProfileName = document.querySelector('.popup__input_profile_name')
-const popupProfileAbout = document.querySelector('.popup__input_profile_about')
-
 const profileValidator = new FormValidator(settings, popupForms.editForm)
 const cardleValidator = new FormValidator(settings, popupForms.imageForm)
+const editPopupSubmit = new PopupWithForm('.popup_edit-profile', savePopupEdit)
+const addPopupSubmit = new PopupWithForm('.popup_add-image', savePopupAdd)
+const popupImageNew = new PopupWithImage('.popup_image-view')
+const userInfo = new UserInfo({profileNameSelector: '.profile__name', profileAboutSelector: '.profile__about'})
 
 profileValidator.enableValidation()
 cardleValidator.enableValidation()
-
-const popupImageNew = new PopupWithImage('.popup_image-view')
+editPopupSubmit.setEventListeners()
+addPopupSubmit.setEventListeners()
+popupImageNew.setEventListeners() //пришлось вызвать popupImageNew.setEventListeners. Без него не заводится.
 
 const defaultCards = new Section({
   data: initialCards,
@@ -47,14 +45,6 @@ const defaultCards = new Section({
  }, cards)
 
  defaultCards.renderItems()
-
-const editPopupSubmit = new PopupWithForm('.popup_edit-profile', savePopupEdit)
-const addPopupSubmit = new PopupWithForm('.popup_add-image', savePopupAdd)
-editPopupSubmit.setEventListeners()
-addPopupSubmit.setEventListeners()
-popupImageNew.setEventListeners() //пришлось вызвать popupImageNew.setEventListeners. Без него не заводится.
-
-const userInfo = new UserInfo({profileNameSelector: '.profile__name', profileAboutSelector: '.profile__about'})
 
 //Сохраняем редактирования профиля
 function savePopupEdit(data) {
@@ -98,11 +88,3 @@ profileAddButton.addEventListener('click', function() {
   cardleValidator.resetValidation()
   new Popup('.popup_add-image').open()
 })
-
-// new Popup(popupCloseButtons).setEventListeners()
- 
-//Обработчик для кнопки сохранения профиля
-// popupEdit.querySelector('.popup__form').addEventListener('submit', savePopupEdit)
-
-//Обработчик для кнопки сохранения изображения
-// popupAdd.querySelector('.popup__form').addEventListener('submit', savePopupAdd)

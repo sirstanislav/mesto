@@ -1,10 +1,3 @@
-import {
-  popupImageFullView,
-  popupImageTitle,
-  imagePopup,
-  openPopup 
-} from './shareFunctions.js'
-
 export default class Card {
   constructor(data, cardTemplateSelector, handleImageClick) {
     this._data = data
