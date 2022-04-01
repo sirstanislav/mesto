@@ -4,15 +4,14 @@ import Section from './Section.js'
 import Popup from './Popup.js'
 import PopupWithImage from './PopupWithImage.js'
 import PopupWithForm from './PopupWithForm.js'
+import UserInfo from './UserInfo.js'
 
 import {
   popupImageName,
   popupImageLink,
   initialCards,
   settings,
-  cards,
-  imagePopup,
-  cardData,
+  cards
 } from './utils/constant.js'
 
 const profileName = document.querySelector('.profile__name')
@@ -38,7 +37,6 @@ const cardleValidator = new FormValidator(settings, popupForms.imageForm)
 profileValidator.enableValidation()
 cardleValidator.enableValidation()
 
-
 const popupImageNew = new PopupWithImage('.popup_image-view')
 
 const defaultCards = new Section({
@@ -50,22 +48,30 @@ const defaultCards = new Section({
 
  defaultCards.renderItems()
 
-
 const editPopupSubmit = new PopupWithForm('.popup_edit-profile', savePopupEdit)
 const addPopupSubmit = new PopupWithForm('.popup_add-image', savePopupAdd)
 editPopupSubmit.setEventListeners()
 addPopupSubmit.setEventListeners()
 popupImageNew.setEventListeners() //пришлось вызвать popupImageNew.setEventListeners. Без него не заводится.
 
+const userInfo = new UserInfo({profileNameSelector: '.profile__name', profileAboutSelector: '.profile__about'})
 
 //Сохраняем редактирования профиля
-function savePopupEdit() {
-  profileName.textContent = popupProfileName.value
-  profileAbout.textContent = popupProfileAbout.value
+function savePopupEdit(data) {
+  const {name, about } = data
+  // profileName.textContent = name
+  // profileAbout.textContent = about
+  userInfo.setUserInfo(name, about)
   new Popup('.popup_edit-profile').close()
 }
+
 //Присваиваем изображению значения из input-ов и передаем в функцию создания карточки
 function savePopupAdd() {
+  const cardData = [{
+      name: popupImageName.value,
+      link: popupImageLink.value
+    }]
+  
   new Section({
     data: cardData,
     renderer: (item) => {
@@ -80,8 +86,9 @@ function savePopupAdd() {
 
 //Обработчик для кнопки редактирования профиля
 profileEditButton.addEventListener('click', function(){
-  popupProfileName.value = profileName.textContent
-  popupProfileAbout.value = profileAbout.textContent
+  const {name, about} = userInfo.getUserInfo()
+  popupProfileName.value = name
+  popupProfileAbout.value = about
   profileValidator.resetValidation()
   new Popup('.popup_edit-profile').open()
 })
