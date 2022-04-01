@@ -14,6 +14,8 @@ import {
   cards
 } from './utils/constant.js'
 
+import css from '../pages/index.css'
+
 const profileEditButton = document.querySelector('.profile__edit-button')
 const profileAddButton = document.querySelector('.profile__add-button')
 const popupProfileName = document.querySelector('.popup__input_profile_name')
