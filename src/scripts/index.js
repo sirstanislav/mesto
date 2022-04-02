@@ -43,11 +43,11 @@ addPopupSubmit.setEventListeners()
 popupImageNew.setEventListeners()
 
 
-function returnCard(item) {
+function renderCard(item) {
   return new Card(item, '.card__template', () => popupImageNew.open(item)).generateCard()
 }
 
-const cardsContainer = new Section({ data: initialCards, renderer: returnCard }, cards)
+const cardsContainer = new Section({ data: initialCards, renderer: renderCard }, cards)
 cardsContainer.renderItems()
 
 //Сохраняем редактирования профиля
@@ -65,7 +65,7 @@ function savePopupAdd() {
       link: popupImageLink.value
     }
 
-  cardsContainer.addItem(returnCard(cardData))
+  cardsContainer.addItem(renderCard(cardData))
 
   addPopupSubmit.close()
   popupImageName.value = ''
