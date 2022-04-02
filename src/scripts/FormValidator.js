@@ -1,3 +1,5 @@
+import { settings } from "./utils/constant"
+
 export default class FormValidator {
   constructor(settings, form) {
     this._settings = settings
@@ -54,10 +56,10 @@ export default class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputsList)) { 
-      this._buttonElement.classList.add('popup__save_disabled')
+      this._buttonElement.classList.add(settings.inactiveButtonClass)
       this._buttonElement.setAttribute('disabled', true)
     } else {
-      this._buttonElement.classList.remove('popup__save_disabled')
+      this._buttonElement.classList.remove(settings.inactiveButtonClass)
       this._buttonElement.removeAttribute('disabled')
     }
   }

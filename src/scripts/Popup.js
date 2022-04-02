@@ -21,10 +21,9 @@ export default class Popup {
 
   // Кнопки закрытия Pop-up
   setEventListeners() {
-    const popup = this._popup.closest('.popup')
-      popup.addEventListener('mousedown', (event) => {
+    this._popup.closest('.popup').addEventListener('mousedown', (event) => {
         if (event.target.classList.contains('popup__close') || event.target === event.currentTarget) {
-          this.close(this._popup = popup)
+          this.close(this._popup)
         }
       })
   }

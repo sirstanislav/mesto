@@ -28,50 +28,46 @@ const popupForms = {
 
 const profileValidator = new FormValidator(settings, popupForms.editForm)
 const cardleValidator = new FormValidator(settings, popupForms.imageForm)
+
 const editPopupSubmit = new PopupWithForm('.popup_edit-profile', savePopupEdit)
 const addPopupSubmit = new PopupWithForm('.popup_add-image', savePopupAdd)
 const popupImageNew = new PopupWithImage('.popup_image-view')
+
 const userInfo = new UserInfo({profileNameSelector: '.profile__name', profileAboutSelector: '.profile__about'})
 
 profileValidator.enableValidation()
 cardleValidator.enableValidation()
+
 editPopupSubmit.setEventListeners()
 addPopupSubmit.setEventListeners()
-popupImageNew.setEventListeners() //пришлось вызвать popupImageNew.setEventListeners. Без него не заводится.
+popupImageNew.setEventListeners()
 
-const defaultCards = new Section({
-  data: initialCards,
-  renderer: (item) => {
-    return new Card(item, '.card__template', () => popupImageNew.open(item)).generateCard()
-  }
- }, cards)
 
- defaultCards.renderItems()
+function returnCard(item) {
+  return new Card(item, '.card__template', () => popupImageNew.open(item)).generateCard()
+}
+
+const cardsContainer = new Section({ data: initialCards, renderer: returnCard }, cards)
+cardsContainer.renderItems()
 
 //Сохраняем редактирования профиля
 function savePopupEdit(data) {
   const {name, about } = data
-  // profileName.textContent = name
-  // profileAbout.textContent = about
   userInfo.setUserInfo(name, about)
-  new Popup('.popup_edit-profile').close()
+  editPopupSubmit.close()
 }
 
 //Присваиваем изображению значения из input-ов и передаем в функцию создания карточки
 function savePopupAdd() {
-  const cardData = [{
+
+  const cardData = {
       name: popupImageName.value,
       link: popupImageLink.value
-    }]
-  
-  new Section({
-    data: cardData,
-    renderer: (item) => {
-      return new Card(item, '.card__template', () => popupImageNew.open(item)).generateCard()
     }
-   }, cards).renderItems()
 
-  new Popup('.popup_add-image').close()
+  cardsContainer.addItem(returnCard(cardData))
+
+  addPopupSubmit.close()
   popupImageName.value = ''
   popupImageLink.value = ''
 }
@@ -82,11 +78,11 @@ profileEditButton.addEventListener('click', function(){
   popupProfileName.value = name
   popupProfileAbout.value = about
   profileValidator.resetValidation()
-  new Popup('.popup_edit-profile').open()
+  editPopupSubmit.open()
 })
 
 //Обработчик для кнопки добавления изображения
 profileAddButton.addEventListener('click', function() {
   cardleValidator.resetValidation()
-  new Popup('.popup_add-image').open()
+  addPopupSubmit.open()
 })
