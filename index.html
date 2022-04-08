@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Место</title>
+<script defer src="index.js"></script><link href="main.css" rel="stylesheet"></head>
+<body class="page">
+
+	<header class="header">
+		<div class="header__logo"></div>
+	</header>
+
+	<main class="content">
+
+		<section class="profile">
+			<div class="profile__avatar"></div>
+			<div class="profile__info">
+				<h1 class="profile__name">Станислав Сорочан</h1>
+				<button class="profile__edit-button" type="button" aria-label="Редактирования профиля"></button>
+				<p class="profile__about">Студент курса "Веб-разработчик"</p>
+			</div>
+			<button class="profile__add-button" type="button" aria-label="Добавить"></button>
+		</section>
+
+		<section class="cards" aria-label="Карточки">
+
+			<template class="card__template">
+				<article class="card">
+					<img class="card__image">
+					<div class="card__navigation">
+						<h2 class="card__navigation-title"></h2>
+						<button class="card__navigation-like" type="button" aria-label="Отметка нравится"></button>
+					</div>
+					<div class="card__delete"></div>
+				</article>
+			</template>
+
+		</section>
+
+	</main>
+
+	<footer class="footer">
+		<p class="footer__author">© 2022 Станислав Сорочан</p>
+	</footer>
+
+	<section class="popup popup_edit-profile">
+		<div class="popup__container">
+			<h2 class="popup__title">Редактировать профиль</h2>
+			<form class="popup__form" name="editForm" novalidate>
+				<input class="popup__input popup__input_profile_name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+				<span class="popup__error"></span>
+				<input class="popup__input popup__input_profile_about" name="about" type="text" placeholder="О себе" minlength="2" maxlength="200" required> 
+				<span class="popup__error"></span>
+				<button class="popup__save" type="submit">Сохранить</button>
+			</form>	
+			<button class="popup__close" type="reset" aria-label="Закрыть"></button>
+		</div>
+	</section>
+
+	<section class="popup popup_add-image">
+		<div class="popup__container">
+			<h2 class="popup__title">Новое место</h2>
+			<form class="popup__form" name="imageForm" novalidate>
+				<input class="popup__input popup__input_image_name" name="image-name" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+				<span class="popup__error"></span>
+				<input class="popup__input popup__input_image_link" name="image-link" type="url" placeholder="Ссылка на картинку" required>
+				<span class="popup__error"></span>
+				<button class="popup__save" type="submit">Создать</button>
+			</form>
+			<button class="popup__close" type="reset" aria-label="Закрыть"></button>
+		</div>
+	</section>
+
+	<section class="popup popup_image-view">
+		<div class="popup__image">
+			<img class="popup__image-full" src="Hello" alt="Hello">
+			<h2 class="popup__image-title"></h2>
+			<button class="popup__close popup__close_image" type="reset" aria-label="Закрыть"></button>
+		</div>
+	</section>
+</body>
+</html>
