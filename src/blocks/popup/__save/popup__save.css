@@ -9,9 +9,11 @@
   background-color: #000000;
   border: 2px solid transparent;
   border-radius: 2px;
+  box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
-  margin: 20px 0 37px 0;
+  margin: 10px 0 37px 0;
+  padding: 0 0 0 0;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
