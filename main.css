@@ -25,7 +25,7 @@
 /*!*************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/profile/__avatar/profile__avatar.css ***!
   \*************************************************************************************************************************************************************************/
-.profile__avatar{align-items:center;background-image:url(6799f5098350757abbc0.jpg);background-size:cover;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;display:flex;height:120px;justify-content:center;min-width:120px}
+.profile__avatar{align-items:center;background-image:none;background-size:cover;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;display:flex;height:120px;justify-content:center;min-width:120px}
 /*!***********************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/profile/__avatar-edit/profile__avatar-edit.css ***!
   \***********************************************************************************************************************************************************************************/
@@ -65,7 +65,7 @@
 /*!***************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card/__navigation/card__navigation.css ***!
   \***************************************************************************************************************************************************************************/
-.card__navigation{align-items:center;display:flex;justify-content:space-between;margin:25px 20px 0 21px}
+.card__navigation{align-items:center;display:flex;justify-content:space-between;margin:22px 20px 0 21px}
 /*!***************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card/__navigation-title/card__navigation-title.css ***!
   \***************************************************************************************************************************************************************************************/
@@ -73,11 +73,15 @@
 /*!*************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card/__navigation-like/card__navigation-like.css ***!
   \*************************************************************************************************************************************************************************************/
-.card__navigation-like{background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-repeat:no-repeat;border:0;margin:0;min-height:19px;min-width:22px}.card__navigation-like:hover{cursor:pointer;opacity:.5;transition:opacity .3s linear;-webkit-transition:opacity .3s linear;-moz-transition:opacity .3s linear;-ms-transition:opacity .3s linear;-o-transition:opacity .3s linear}.card__navigation-like:active{background-image:url(fe17a515669479b1e649.svg);opacity:1}
+.card__navigation-like{align-self:flex-start;background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-repeat:no-repeat;border:0;margin:0;min-height:19px;min-width:22px;padding:0}.card__navigation-like:hover{cursor:pointer;opacity:.5;transition:opacity .3s linear;-webkit-transition:opacity .3s linear;-moz-transition:opacity .3s linear;-ms-transition:opacity .3s linear;-o-transition:opacity .3s linear}.card__navigation-like:active{background-image:url(fe17a515669479b1e649.svg);opacity:1}
 /*!***********************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card/__navigation-like_dark/card__navigation-like_dark.css ***!
   \***********************************************************************************************************************************************************************************************/
 .card__navigation-like_dark{background-color:transparent;background-image:url(fe17a515669479b1e649.svg);background-repeat:no-repeat;border:0;margin:0;min-height:19px;min-width:22px}
+/*!***************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card/__like-count/card__like-count.css ***!
+  \***************************************************************************************************************************************************************************/
+.card__like-count{bottom:22px;height:13px;position:absolute;right:26px;width:10px}
 /*!*******************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card/__delete/card__delete.css ***!
   \*******************************************************************************************************************************************************************/
