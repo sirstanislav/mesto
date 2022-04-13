@@ -23,6 +23,7 @@
 @import url(../blocks/card/__navigation-title/card__navigation-title.css);
 @import url(../blocks/card/__navigation-like/card__navigation-like.css);
 @import url(../blocks/card/__navigation-like_dark/card__navigation-like_dark.css);
+@import url(../blocks/card/__like-count/card__like-count.css);
 @import url(../blocks/card/__delete/card__delete.css);
 
 @import url(../blocks/footer/footer.css);

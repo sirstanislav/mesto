@@ -5,7 +5,7 @@
 
   min-width: 120px;
   height: 120px;
-  background-image: url(../../../images/profile__avatar.jpg);
+  background-image: none;
   background-size: cover;
   border-radius: 50%;
   -webkit-border-radius: 50%;
