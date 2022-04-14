@@ -14,6 +14,6 @@ export default class Section {
 
 //Готовые карточки добавляем в конец DOM
   addItem(item) {
-    this._container.append(item)
+    this._container.prepend(item)
   }
 }

@@ -22,11 +22,13 @@ api.getProfile()
     userInfo.setUserInfo(res.name, res.about)
     userID = res._id
   })
+  .catch(err => console.log(`Ошибка.....: ${err}`))
 
 api.getAvatar()
   .then(res => {
     userInfo.setAvatar(res.avatar)
   })
+  .catch(err => console.log(`Ошибка.....: ${err}`))
 
 api.getInitialCards()
   .then(cardList => {
@@ -41,6 +43,15 @@ api.getInitialCards()
       }
       cardsContainer.addItem(renderCard(cardData))
     })
+  })
+  .catch(err => console.log(`Ошибка.....: ${err}`))
+
+Promise.all([ api.getProfile(), api.getInitialCards()])
+  .then((values)=>{ 
+
+  })
+  .catch((err)=>{
+    console.log(err);
   })
 
 const profileEditButton = document.querySelector('.profile__edit-button')
@@ -89,8 +100,8 @@ function renderCard(item) {
         .then(res => {
           card.deleteCard()
           popupConfirmDelete.close()
-          console.log(res)
         })
+        .catch(err => console.log(`Ошибка.....: ${err}`))
     })
   },
   (id) => {
@@ -104,13 +115,14 @@ function renderCard(item) {
       .then(res => {
         card.setLikes(res.likes)
       })
+      .catch(err => console.log(`Ошибка.....: ${err}`))
     }
   }
   )
   return card.generateCard()
 }
 
-const cardsContainer = new Section({ data: [], renderer: renderCard }, cards)
+const cardsContainer = new Section({ data: [],  renderer:(item) => cardsContainer.addItem(renderCard(item))}, cards)
 cardsContainer.renderItems()
 
 function savePopupAvatar(data) {
@@ -120,6 +132,7 @@ function savePopupAvatar(data) {
       userInfo.setAvatar(res.avatar)
       popupAvatar.close()
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => {
       popupAvatar.renderLoading(false)
     })
@@ -129,13 +142,13 @@ function savePopupAvatar(data) {
 function savePopupEdit(data) {
   editPopupSubmit.renderLoading(true)
   const {name, about } = data
-  console.log(data)
 
 api.editProfile(name, about)
   .then(res => {
     userInfo.setUserInfo(res.name, res.about)
     editPopupSubmit.close()
   })
+  .catch(err => console.log(`Ошибка.....: ${err}`))
   .finally(() => {
     editPopupSubmit.renderLoading(false)
   })
@@ -157,9 +170,8 @@ function savePopupAdd(data) {
       }
       cardsContainer.addItem(renderCard(cardData))
       addPopupSubmit.close()
-      popupImageName.value = ''
-      popupImageLink.value = ''
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => {
       addPopupSubmit.renderLoading(false)
     })
@@ -181,7 +193,6 @@ profileAddButton.addEventListener('click', function() {
 })
 
 avatarEditButton.addEventListener('click', function() {
-  userInfo.getAvatar()
   avatarValidator.resetValidation()
   popupAvatar.open()
 })

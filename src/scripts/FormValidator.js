@@ -10,10 +10,7 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._form.addEventListener('submit', function(event) {
-        event.preventDefault();
-      });
-      this._setEventListeners()
+    this._form.addEventListener('submit', this._setEventListeners())
   }
 
   _setEventListeners() {

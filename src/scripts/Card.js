@@ -37,12 +37,7 @@ export default class Card {
     this._cardImage.addEventListener('click', () => this._handleImageClick())
   }
 
-  // _toggleLikeColor = () => {
-  //   this._like.classList.toggle('card__navigation-like_dark')
-  // }
-
   deleteCard = () => {
-    console.log(this._likes)
     this._createElement.remove()
     this._createElement = null
   }
