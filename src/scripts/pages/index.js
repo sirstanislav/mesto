@@ -1,19 +1,19 @@
-import FormValidator from './FormValidator.js'
-import Card from './Card.js'
-import Section from './Section.js'
-import PopupWithImage from './PopupWithImage.js'
-import PopupWithForm from './PopupWithForm.js'
-import UserInfo from './UserInfo.js'
-import {api} from './Api.js'
+import FormValidator from '../FormValidator.js'
+import Card from '../Card.js'
+import Section from '../Section.js'
+import PopupWithImage from '../PopupWithImage.js'
+import PopupWithForm from '../PopupWithForm.js'
+import UserInfo from '../UserInfo.js'
+import {api} from '../Api.js'
 
 import {
   popupImageName,
   popupImageLink,
   settings,
   cards
-} from './utils/constant.js'
+} from '../utils/constant.js'
 
-import css from '../pages/index.css'
+import css from '../../pages/index.css'
 
 let userID
 
@@ -45,7 +45,7 @@ api.getInitialCards()
 
 const profileEditButton = document.querySelector('.profile__edit-button')
 const profileAddButton = document.querySelector('.profile__add-button')
-const avatarEditButton = document.querySelector('.profile__avatar-edit')
+const avatarEditButton = document.querySelector('.profile__avatar')
 const popupProfileName = document.querySelector('.popup__input_profile_name')
 const popupProfileAbout = document.querySelector('.popup__input_profile_about')
 
@@ -118,11 +118,11 @@ function savePopupAvatar(data) {
   api.updateAvatar(data['update-avatar'])
     .then(res => {
       userInfo.setAvatar(res.avatar)
+      popupAvatar.close()
     })
     .finally(() => {
       popupAvatar.renderLoading(false)
     })
-  popupAvatar.close()
 }
 
 //Сохраняем редактирования профиля
@@ -134,11 +134,12 @@ function savePopupEdit(data) {
 api.editProfile(name, about)
   .then(res => {
     userInfo.setUserInfo(res.name, res.about)
+    editPopupSubmit.close()
   })
   .finally(() => {
     editPopupSubmit.renderLoading(false)
   })
-  editPopupSubmit.close()
+  
 }
 
 //Присваиваем изображению значения из input-ов и передаем в функцию создания карточки
