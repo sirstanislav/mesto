@@ -1,10 +1,10 @@
-import FormValidator from '../FormValidator.js'
-import Card from '../Card.js'
-import Section from '../Section.js'
-import PopupWithImage from '../PopupWithImage.js'
-import PopupWithForm from '../PopupWithForm.js'
-import UserInfo from '../UserInfo.js'
-import {api} from '../Api.js'
+import FormValidator from '../components/FormValidator.js'
+import Card from '../components/Card.js'
+import Section from '../components/Section.js'
+import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithForm from '../components/PopupWithForm.js'
+import UserInfo from '../components/UserInfo.js'
+import {api} from '../components/Api.js'
 
 import {
   popupImageName,
@@ -13,16 +13,12 @@ import {
   cards
 } from '../utils/constant.js'
 
-import css from '../../pages/index.css'
+import css from './index.css'
 
 let userID
 
-api.getProfile()
-  .then(res => {
-    userInfo.setUserInfo(res.name, res.about)
-    userID = res._id
-  })
-  .catch(err => console.log(`Ошибка.....: ${err}`))
+const getProfile = api.getProfile()
+const getInitialCards = api.getInitialCards()
 
 api.getAvatar()
   .then(res => {
@@ -30,9 +26,13 @@ api.getAvatar()
   })
   .catch(err => console.log(`Ошибка.....: ${err}`))
 
-api.getInitialCards()
-  .then(cardList => {
-    cardList.forEach(data => {
+Promise.all([ getProfile, getInitialCards])
+  .then(([getProfile, getInitialCards]) => { 
+
+    userInfo.setUserInfo(getProfile.name, getProfile.about)
+    userID = getProfile._id
+
+    getInitialCards.forEach(data => {
       const cardData = {
         name: data.name,
         link: data.link,
@@ -41,18 +41,11 @@ api.getInitialCards()
         userID: userID,
         ownerID: data.owner._id
       }
-      cardsContainer.addItem(renderCard(cardData))
+      cardsContainer.addItem(renderCard(cardData)) //Я не могу разобраться. Не понимаю. Я исправил всё, крмое этого.
     })
   })
   .catch(err => console.log(`Ошибка.....: ${err}`))
 
-Promise.all([ api.getProfile(), api.getInitialCards()])
-  .then((values)=>{ 
-
-  })
-  .catch((err)=>{
-    console.log(err);
-  })
 
 const profileEditButton = document.querySelector('.profile__edit-button')
 const profileAddButton = document.querySelector('.profile__add-button')
@@ -123,7 +116,6 @@ function renderCard(item) {
 }
 
 const cardsContainer = new Section({ data: [],  renderer:(item) => cardsContainer.addItem(renderCard(item))}, cards)
-cardsContainer.renderItems()
 
 function savePopupAvatar(data) {
   popupAvatar.renderLoading(true)

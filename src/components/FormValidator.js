@@ -1,4 +1,4 @@
-import { settings } from "./utils/constant"
+import { settings } from "../utils/constant"
 
 export default class FormValidator {
   constructor(settings, form) {
