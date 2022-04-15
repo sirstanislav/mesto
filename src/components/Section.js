@@ -6,11 +6,11 @@ export default class Section {
   }
 
   //Инициализируем карточки из массива
-  renderItems(cards) {
+  renderItems(cards, userID) {
     cards.forEach((card) => {
-      this.addItem(this._renderer(card))
+      this._renderer(card, userID)
     });
-  } 
+  }
 
 //Готовые карточки добавляем в конец DOM
   addItem(item) {

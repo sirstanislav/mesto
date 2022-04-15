@@ -27,22 +27,12 @@ api.getAvatar()
   .catch(err => console.log(`Ошибка.....: ${err}`))
 
 Promise.all([ getProfile, getInitialCards])
-  .then(([getProfile, getInitialCards]) => { 
+  .then(([getProfile, getInitialCards]) => {
 
     userInfo.setUserInfo(getProfile.name, getProfile.about)
     userID = getProfile._id
 
-    getInitialCards.forEach(data => {
-      const cardData = {
-        name: data.name,
-        link: data.link,
-        likes: data.likes,
-        id: data._id,
-        userID: userID,
-        ownerID: data.owner._id
-      }
-      cardsContainer.addItem(renderCard(cardData)) //Я не могу разобраться. Не понимаю. Я исправил всё, крмое этого.
-    })
+    cardsContainer.renderItems(getInitialCards, getProfile._id)
   })
   .catch(err => console.log(`Ошибка.....: ${err}`))
 
@@ -85,8 +75,8 @@ popupImageNew.setEventListeners()
 popupConfirmDelete.setEventListeners()
 popupAvatar.setEventListeners()
 
-function renderCard(item) {
-   const card = new Card(item, '.card__template', () => popupImageNew.open(item), (id) => {
+function renderCard(item, userID) {
+   const card = new Card(item, userID, '.card__template', () => popupImageNew.open(item), (id) => {
     popupConfirmDelete.open()
     popupConfirmDelete.changeSubmitHandler(() => {
       api.deleteCard(id)
@@ -115,7 +105,7 @@ function renderCard(item) {
   return card.generateCard()
 }
 
-const cardsContainer = new Section({ data: [],  renderer:(item) => cardsContainer.addItem(renderCard(item))}, cards)
+const cardsContainer = new Section({ data: [],  renderer:(item) => cardsContainer.addItem(renderCard(item, userID))}, cards)
 
 function savePopupAvatar(data) {
   popupAvatar.renderLoading(true)
@@ -152,15 +142,7 @@ function savePopupAdd(data) {
   addPopupSubmit.renderLoading(true)
   api.addCard(data['image-name'], data['image-link'])
     .then(res => {
-      const cardData = {
-        name: res.name,
-        link: res.link,
-        likes: res.likes,
-        id: res._id,
-        userID: userID,
-        ownerID: res.owner._id
-      }
-      cardsContainer.addItem(renderCard(cardData))
+      cardsContainer.addItem(renderCard(res, userID))
       addPopupSubmit.close()
     })
     .catch(err => console.log(`Ошибка.....: ${err}`))

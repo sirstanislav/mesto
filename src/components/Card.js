@@ -1,13 +1,13 @@
 export default class Card {
-  constructor(data, cardTemplateSelector, handleImageClick, handleDeleteClick, handleLikeClick) {
+  constructor(data, userID, cardTemplateSelector, handleImageClick, handleDeleteClick, handleLikeClick) {
     this._data = data
     this._createElement = document.querySelector(cardTemplateSelector).content.querySelector('.card').cloneNode(true)
     this._like = this._createElement.querySelector('.card__navigation-like')
     this._cardDeleteButton = this._createElement.querySelector('.card__delete')
     this._likes = data.likes
-    this._id = data.id
-    this._userID = data.userID
-    this._ownerID = data.ownerID
+    this._id = data._id
+    this._userID = userID
+    this._ownerID = data.owner._id
     this._handleImageClick = handleImageClick
     this._handleDeleteClick = handleDeleteClick
     this._handleLikeClick = handleLikeClick
@@ -15,6 +15,9 @@ export default class Card {
 
   //Функция создания карточки и добавления к ним обработчиков событий
   generateCard() {
+
+    console.log(this._data)
+    console.log('suerID:', this._userID, 'Owner":', this._ownerID)
     this._cardImage = this._createElement.querySelector('.card__image')
     this._cardNavigationTitle = this._createElement.querySelector('.card__navigation-title')
     this._cardImage.src = this._data.link;
@@ -48,7 +51,6 @@ export default class Card {
     likeCountElement.textContent = this._likes.length
 
     if(this.isLiked()) {
-      // this._toggleLikeColor()
       this._like.classList.add('card__navigation-like_dark')
     } else {
       this._like.classList.remove('card__navigation-like_dark')
