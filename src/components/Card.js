@@ -15,9 +15,6 @@ export default class Card {
 
   //Функция создания карточки и добавления к ним обработчиков событий
   generateCard() {
-
-    console.log(this._data)
-    console.log('suerID:', this._userID, 'Owner":', this._ownerID)
     this._cardImage = this._createElement.querySelector('.card__image')
     this._cardNavigationTitle = this._createElement.querySelector('.card__navigation-title')
     this._cardImage.src = this._data.link;
