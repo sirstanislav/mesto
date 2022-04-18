@@ -11,6 +11,7 @@ export default class Card {
     this._handleImageClick = handleImageClick
     this._handleDeleteClick = handleDeleteClick
     this._handleLikeClick = handleLikeClick
+    this._likeCountElement = this._createElement.querySelector('.card__like-count')
   }
 
   //Функция создания карточки и добавления к ним обработчиков событий
@@ -44,8 +45,7 @@ export default class Card {
 
   setLikes(newLikes) {
     this._likes = newLikes
-    const likeCountElement = this._createElement.querySelector('.card__like-count')
-    likeCountElement.textContent = this._likes.length
+    this._likeCountElement.textContent = this._likes.length
 
     if(this.isLiked()) {
       this._like.classList.add('card__navigation-like_dark')
