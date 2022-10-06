@@ -1,8 +1,6 @@
 # Project: Mesto
 
-Mesto - an interactive page where you can add photos, delete them, and like them.
-
-The project is written in `HTML`, `CSS` and `JavaScript` languages. The `BEM` methodology for building the site was used.
+Mesto - an interactive page where you can register users, add photos, delete them, and like them. The project is written in `HTML`, `CSS` and `JavaScript` languages. The `BEM` methodology for building the site was used.
 
 <div align="center">
 <a href="https://sirstanislav.github.io/mesto/" target="_blank"><img width="100%" height="auto" src="https://github.com/sirstanislav/mesto/blob/main/src/images/preview.png?raw=true"></a>
@@ -10,7 +8,7 @@ The project is written in `HTML`, `CSS` and `JavaScript` languages. The `BEM` me
 
 <br>
 
-The most memorable in this project is the `popup forms` and their validation through class components.
+The most memorable in this project is the `popup forms` and their `validation` through class components.
 
 ```JavaScript
 import { settings } from "../utils/constant";
